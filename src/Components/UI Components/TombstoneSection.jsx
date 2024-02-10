@@ -12,11 +12,11 @@ export default function TombstoneSection({ oneItem, index }) {
         <>
             <section style={{ background: bgDetermine() }} className="tombstone-item">
                 <div style={{color: "black"}} className="center-text">
-                    <h2>{oneItem.name}</h2>
-                    <p>Email:  <a style={{textDecoration: "underline"}} href={`mailto:${oneItem.email}`}>{oneItem.email}</a></p>
-                    <p>Phone:  <a style={{textDecoration: "underline"}} href={`tel:${oneItem.phone}`}>{oneItem.phone}</a></p>
-                    <p>Location: {oneItem.location}</p>
-                    <p>Inquiry: {oneItem.help}</p>
+                    <h2 className="text-lg font-bold">{oneItem.name}</h2>
+                    <p><span className="font-bold">Email</span>:  <a style={{textDecoration: "underline"}} href={`mailto:${oneItem.email}`}>{oneItem.email}</a></p>
+                    <p><span className="font-bold">Phone</span>:  <a style={{textDecoration: "underline"}} href={`tel:${oneItem.phone}`}>{oneItem.phone}</a></p>
+                    <p><span className="font-bold">Location</span>: {oneItem.location}</p>
+                    <p style={{marginTop: "2rem"}}><span className="font-bold">Inquiry</span>: {oneItem.help}</p>
                 </div>
             </section>
         </>
