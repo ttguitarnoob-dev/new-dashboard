@@ -1,4 +1,31 @@
+
+
 .App {
   text-align: center;
+  background-color: black;
+  color: white;
+  min-height: 120dvh;
+}
+
+.page-title{
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+.button-list{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.item-button{
+  margin: 1rem;
+}
+
+.item-button:hover{
+  transform: scale(1.2);
+  border-color: black;
 }
 
