@@ -1,7 +1,10 @@
 import ButtonList from "../UI Components/ButtonList";
 
 export default function Home() {
-    const listItems = [{text: "Travis", link: "/Travis"}, {text: "Kiara", link: "/Kiara"}]
+    const listItems = [
+        {text: "Travis", link: "/Travis", tab: false}, 
+        {text: "Kiara", link: "/Kiara", tab: false}
+    ]
 
     return (
         <>

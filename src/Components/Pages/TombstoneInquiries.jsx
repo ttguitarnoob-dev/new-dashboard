@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@nextui-org/react"
 import TombstoneSection from "../UI Components/TombstoneSection"
 
-export default function Tombstone() {
+export default function TombstoneInquiries() {
 
     const URL = "https://api.ttguitarnoob.cloud/majestics"
     const [items, setItems] = useState()

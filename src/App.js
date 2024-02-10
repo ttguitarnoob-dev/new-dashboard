@@ -5,7 +5,9 @@ import Nav from './Components/UI Components/Nav';
 import { Route, Routes } from 'react-router';
 import Home from './Components/Pages/Home';
 import Kiara from './Components/Pages/Kiara';
-import Tombstone from './Components/Pages/Tombstone';
+import TombstoneStuff from './Components/Pages/TombstoneStuff';
+import TombstoneInquiries from './Components/Pages/TombstoneInquiries';
+import Academy from './Components/Pages/Academy/Academy';
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/Kiara' element={<Kiara />} />
-          <Route path='/tombstone' element={<Tombstone />} />
+          <Route path='/tombstone' element={<TombstoneStuff />} />
+          <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
+          <Route path='/academy' element={<Academy />} />
         </Routes>
       </NextUIProvider>
     </div>

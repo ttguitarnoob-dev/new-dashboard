@@ -8,6 +8,7 @@ export default function ButtonList({ items }) {
                     <ItemButton
                         text={oneItem.text}
                         link={oneItem.link}
+                        tab={oneItem.tab}
                     />
                 ))}
             </div>

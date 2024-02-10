@@ -2,8 +2,8 @@ import ButtonList from "../UI Components/ButtonList"
 
 export default function Kiara() {
     const itemList = [
-        { text: "Tombstone Stuff", link: "/tombstone" },
-        { text: "School Stuff", link: "/academy" },
+        { text: "Tombstone Stuff", link: "/tombstone", tab: false },
+        { text: "School Stuff", link: "/academy", tab: false },
 
     ]
 
