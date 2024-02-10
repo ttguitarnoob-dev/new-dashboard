@@ -29,12 +29,12 @@ export default function Nav(){
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 <NavbarItem>
-                    <Link color="foreground" href="/Services">
+                    <Link color="foreground" href="/Travis">
                         Travis
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" href="/About">
+                    <Link color="foreground" href="/Kiara">
                         Kiara
                     </Link>
                 </NavbarItem>
