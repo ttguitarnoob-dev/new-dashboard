@@ -8,6 +8,7 @@ import Kiara from './Components/Pages/Kiara';
 import TombstoneStuff from './Components/Pages/TombstoneStuff';
 import TombstoneInquiries from './Components/Pages/TombstoneInquiries';
 import Academy from './Components/Pages/Academy/Academy';
+import Travis from './Components/Pages/Travis';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/Kiara' element={<Kiara />} />
+          <Route path='/Travis' element={<Travis />} />
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
           <Route path='/academy' element={<Academy />} />
