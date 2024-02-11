@@ -9,6 +9,8 @@ import TombstoneStuff from './Components/Pages/TombstoneStuff';
 import TombstoneInquiries from './Components/Pages/TombstoneInquiries';
 import Academy from './Components/Pages/Academy/Academy';
 import Travis from './Components/Pages/Travis';
+import Quizzer from './Components/Pages/Academy/Quizzer/Quizzer';
+import Quizzes from './Components/Pages/Academy/Quizzer/Quizzes';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
           <Route path='/academy' element={<Academy />} />
+          <Route path='/academy/quizzes' element={<Quizzes />} />
+          <Route path='/academy/quizzer' element={<Quizzer />} />
         </Routes>
       </NextUIProvider>
     </div>

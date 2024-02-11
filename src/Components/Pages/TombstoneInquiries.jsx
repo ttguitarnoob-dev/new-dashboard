@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Button } from "@nextui-org/react"
 import TombstoneSection from "../UI Components/TombstoneSection"
 
 export default function TombstoneInquiries() {
