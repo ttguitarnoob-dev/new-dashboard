@@ -11,6 +11,9 @@ import Academy from './Components/Pages/Academy/Academy';
 import Travis from './Components/Pages/Travis';
 import Quizzer from './Components/Pages/Academy/Quizzer/Quizzer';
 import Quizzes from './Components/Pages/Academy/Quizzer/Quizzes';
+import SchoolJournal from './Components/Pages/Academy/SchoolJournal';
+import NewJournal from './Components/Pages/Academy/NewJournal';
+import JournalDetails from './Components/Pages/Academy/JournalDetails';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
           <Route path='/academy' element={<Academy />} />
+          <Route path='/academy/journal' element={<SchoolJournal />} />
+          <Route path='/academy/journal/new' element={<NewJournal />} />
+          <Route path='/academy/journal/:id' element={<JournalDetails />} />
           <Route path='/academy/quizzes' element={<Quizzes />} />
           <Route path='/academy/quizzer' element={<Quizzer />} />
         </Routes>

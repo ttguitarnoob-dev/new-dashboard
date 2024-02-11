@@ -8,6 +8,7 @@ export default function Academy() {
         { text: "Zearn", link: "https://zearn.org", tab: true },
         { text: "Good And Beautiful", link: "https://goodandbeautiful.com", tab: true },
         { text: "Youtube", link: "https://youtube.com", tab: true },
+        { text: "Journal", link: "/academy/journal", tab: false },
 
     ]
 
