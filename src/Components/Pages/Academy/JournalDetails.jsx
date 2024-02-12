@@ -38,12 +38,6 @@ export default function JournalDetails() {
     }
 
     return <div className="container">
-        <div className="journal-container">
-            <h2>Learning Journal for {journal.date} </h2>
-            <a href="/academy/journal"><button>Back to Journals</button></a>
-            <hr></hr>
-            <p>{journal.entry}</p>
-        </div>
-        <TextSection title={"blallala"} text={"blah"} />
+        <TextSection title={journal.date} text={journal.entry} />
     </div>
 }

@@ -40,3 +40,9 @@
 .center-text{
   max-width: 400px;
 }
+
+.text-section{
+  background: rgb(225, 183, 253);
+  color: black;
+  width: 100vw;
+}

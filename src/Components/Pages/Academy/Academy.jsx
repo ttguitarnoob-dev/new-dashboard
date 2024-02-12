@@ -2,13 +2,12 @@ import ButtonList from "../../UI Components/ButtonList";
 
 export default function Academy() {
     const itemList = [
-        { text: "Journals", link: "/academy/journals", tab: false },
+        { text: "Journals", link: "/academy/journal", tab: false },
         { text: "Quizzes", link: "/academy/quizzes", tab: false },
         { text: "EasyPeasy", link: "https://myepassignments.com/pages/account.html", tab: true },
         { text: "Zearn", link: "https://zearn.org", tab: true },
         { text: "Good And Beautiful", link: "https://goodandbeautiful.com", tab: true },
         { text: "Youtube", link: "https://youtube.com", tab: true },
-        { text: "Journal", link: "/academy/journal", tab: false },
 
     ]
 
