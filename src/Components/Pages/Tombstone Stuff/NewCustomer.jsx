@@ -29,6 +29,7 @@ export default function NewCustomer() {
                                 onChange={handleChange}
                                 name="name"
                                 id="name"
+                                color="secondary"
 
                             />
                         </div>
@@ -38,6 +39,7 @@ export default function NewCustomer() {
                                 name="phone"
                                 id="phone"
                                 type="text"
+                                color="secondary"
                                 onChange={handleChange}
                             />
                         </div>
@@ -45,6 +47,7 @@ export default function NewCustomer() {
                             <Input
                                 label="email"
                                 type="email"
+                                color="secondary"
                                 onChange={handleChange}
                                 name="email"
                                 id="email"
@@ -55,6 +58,8 @@ export default function NewCustomer() {
                                 label="Customer Notes"
                                 name="customerNotes"
                                 id="customerNotes"
+                                placeholder="Enter any other customer information that you need to remember. You can add to this later."
+                                color="secondary"
                                 onChange={handleChange}
                             />
                         </div>
