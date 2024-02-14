@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import TombstoneSection from "../UI Components/TombstoneSection"
+import TombstoneSection from "../../UI Components/TombstoneSection"
+import { Button } from "@nextui-org/react"
+import { useNavigate } from "react-router"
 
 export default function TombstoneInquiries() {
 
     const URL = "https://api.ttguitarnoob.cloud/majestics"
     const [items, setItems] = useState()
+    const navigate = useNavigate()
 
     async function handleFetch() {
         try {
@@ -36,8 +39,14 @@ export default function TombstoneInquiries() {
     return (
 
         <>
-            <h1 className="page-title">Tombstones</h1>
+            <div className="mb-10">
+                <h1 className="page-title">Tombstones</h1>
+                <Button onClick={() => navigate("/tombstone")}>
+                    Back to Tombstone Stuff
+                </Button>
+            </div>
             {items && items.map((oneItem, index) => (
+
 
                 <TombstoneSection oneItem={oneItem} index={index} />
 

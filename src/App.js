@@ -5,8 +5,8 @@ import Nav from './Components/UI Components/Nav';
 import { Route, Routes } from 'react-router';
 import Home from './Components/Pages/Home';
 import Kiara from './Components/Pages/Kiara';
-import TombstoneStuff from './Components/Pages/TombstoneStuff';
-import TombstoneInquiries from './Components/Pages/TombstoneInquiries';
+import TombstoneStuff from './Components/Pages/Tombstone Stuff/TombstoneStuff';
+import TombstoneInquiries from './Components/Pages/Tombstone Stuff/TombstoneInquiries';
 import Academy from './Components/Pages/Academy/Academy';
 import Travis from './Components/Pages/Travis';
 import Quizzer from './Components/Pages/Academy/Quizzer/Quizzer';
@@ -14,6 +14,7 @@ import Quizzes from './Components/Pages/Academy/Quizzer/Quizzes';
 import SchoolJournal from './Components/Pages/Academy/SchoolJournal';
 import NewJournal from './Components/Pages/Academy/NewJournal';
 import JournalDetails from './Components/Pages/Academy/JournalDetails';
+import Customers from './Components/Pages/Tombstone Stuff/Customers';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/Travis' element={<Travis />} />
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
+          <Route path='/tombstone/customers' element={<Customers />} />
           <Route path='/academy' element={<Academy />} />
           <Route path='/academy/journal' element={<SchoolJournal />} />
           <Route path='/academy/journal/new' element={<NewJournal />} />
