@@ -12,6 +12,7 @@ export default function Budget() {
         <>
             <section>
                 <h1 className="page-title">Budgety Thing</h1>
+                <Button onClick={() => handleClick("/budget/new")}>Add Month</Button>
                 <Table aria-label="Example static collection table">
                     <TableHeader>
                         <TableColumn>MONTH</TableColumn>

@@ -5,6 +5,10 @@ export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
 
+    function handleClick(url){
+        navigate(url)
+    }
+
     return(
         <>
         <section>
