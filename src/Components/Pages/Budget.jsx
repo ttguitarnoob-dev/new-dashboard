@@ -1,6 +1,12 @@
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@nextui-org/react";
+import { useNavigate } from "react-router";
 
 export default function Budget() {
+    const navigate = useNavigate()
+
+    function handleClick(url) {
+        navigate(url)
+    }
 
     return (
         <>
@@ -13,7 +19,7 @@ export default function Budget() {
                     </TableHeader>
                     <TableBody>
                         <TableRow key="1">
-                            <TableCell>June</TableCell>
+                            <TableCell><Button onClick={() => handleClick("/budget/234")}>June</Button></TableCell>
                             <TableCell>$230</TableCell>
                         </TableRow>
                         
