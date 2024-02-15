@@ -1,6 +1,6 @@
 import ButtonList from "../UI Components/ButtonList"
 
-export default function Travis(){
+export default function Travis() {
     const itemList = [
         { text: "Proxmox", link: "https://proxmox.ttguitarnoob.cloud", tab: true },
         { text: "PiHole", link: "http://10.24.24.112/admin/login.php", tab: true },
@@ -9,10 +9,12 @@ export default function Travis(){
 
     ]
 
-    return(
+    return (
         <>
-        <h1>Hi, it's me</h1>
-        <ButtonList items={itemList} />
+            <section className="page">
+                <h1>Hi, it's me</h1>
+                <ButtonList items={itemList} />
+            </section>
         </>
     )
 }

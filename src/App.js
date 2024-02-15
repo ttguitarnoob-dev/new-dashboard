@@ -16,6 +16,7 @@ import NewJournal from './Components/Pages/Academy/NewJournal';
 import JournalDetails from './Components/Pages/Academy/JournalDetails';
 import Customers from './Components/Pages/Tombstone Stuff/Customers';
 import NewCustomer from './Components/Pages/Tombstone Stuff/NewCustomer';
+import Budget from './Components/Pages/Budget';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/Kiara' element={<Kiara />} />
           <Route path='/Travis' element={<Travis />} />
+          <Route path='/budget' element={<Budget />} />
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
           <Route path='/tombstone/customers' element={<Customers />} />

@@ -1,10 +1,15 @@
 
 
 .App {
-  text-align: center;
+  /* text-align: center; */
   background-color: black;
   color: white;
   min-height: 120dvh;
+}
+
+.page {
+  text-align: center;
+  width: 100vw;
 }
 
 .page-title{
