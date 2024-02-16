@@ -1,4 +1,4 @@
-import { Button, Input, useNavbar } from "@nextui-org/react"
+import { Button, Input, Select, SelectItem, useNavbar } from "@nextui-org/react"
 import { useNavigate, useParams } from "react-router"
 
 export default function NewBudget() {
@@ -7,6 +7,7 @@ export default function NewBudget() {
     const initialInput = {
         
     }
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     function handleClick(url){
         navigate(url)
@@ -34,6 +35,18 @@ export default function NewBudget() {
                     id="chosenMonth"
                     onClick={handleClick}
                     />
+                    <Select 
+                    label="Select Month"
+                    name="chosenMonth"
+                    id="chosenMonth"
+                    onChange={handleChange}
+                    >
+                        {months.map((month) => (
+                            <SelectItem key={month} value={month.toLowerCase()}>
+                                {month}
+                            </SelectItem>
+                        ))}
+                    </Select>
                 </form>
             </section>
         </section>
