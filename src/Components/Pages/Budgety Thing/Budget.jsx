@@ -2,28 +2,7 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyV
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const rows = [
-  {
-    key: "1",
-    month: "June",
-    unpaid: 123,
-  },
-  {
-    key: "2",
-    month: "July",
-    unpaid: 234,
-  },
-  {
-    key: "3",
-    month: "Septober",
-    unpaid: 645,
-  },
-  {
-    key: "4",
-    month: "August",
-    unpaid: 12334,
-  },
-];
+let rows = [];
 
 const columns = [
   {
@@ -40,6 +19,7 @@ export default function App() {
 
     const navigate = useNavigate()
     const [budgets, setBudgets] = useState({})
+    
 
     function handleClick(url) {
         navigate(url)
@@ -55,9 +35,10 @@ export default function App() {
         try{
             const response = await fetch(URL, options)
             const data = await response.json()
+            rows = data
             setBudgets(data)
         } catch(err){
-            console.log("shit happened when fetching that")
+            console.log("shit happened when fetching that", err)
         }
     }
 
@@ -72,7 +53,7 @@ console.log("thing", budgets)
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
-      <TableBody items={budgets}>
+      <TableBody items={rows}>
         {(item) => (
           <TableRow key={item.key}>
             {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
