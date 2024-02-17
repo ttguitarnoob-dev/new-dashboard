@@ -5,7 +5,7 @@ export default function NewBudget() {
     
     const navigate = useNavigate()
     const initialInput = {
-        
+        month: ""
     }
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -13,14 +13,31 @@ export default function NewBudget() {
         navigate(url)
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
-        console.log("Submitted", initialInput)
+        const url = "http://localhost:8000/budgets"
+        const options = {
+            method: "POST",
+            body: JSON.stringify(initialInput),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+
+        try {
+            const response = await fetch(url, options)
+            const parsed = await response.json()
+            navigate("/budget")
+            return parsed
+        } catch (err){
+            console.log("Devastation happened when trying to psot that", err)
+        }
+
     }
 
     function handleChange(e) {
-        var edited = e.target.name
-        initialInput[edited] = e.target.value
+        console.log('changed?', e.target.value)
+        initialInput.month = e.target.value
     }
 
     return(
@@ -29,12 +46,6 @@ export default function NewBudget() {
             <h1 className="page-title">New Budget</h1>
             <section>
                 <form>
-                    <Input 
-                    label="Month"
-                    name="chosenMonth"
-                    id="chosenMonth"
-                    onClick={handleClick}
-                    />
                     <Select 
                     label="Select Month"
                     name="chosenMonth"
@@ -47,6 +58,7 @@ export default function NewBudget() {
                             </SelectItem>
                         ))}
                     </Select>
+                    <Button onClick={handleSubmit}>Submit</Button>
                 </form>
             </section>
         </section>
