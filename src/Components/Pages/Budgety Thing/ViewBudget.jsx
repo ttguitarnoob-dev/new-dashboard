@@ -1,4 +1,5 @@
 import { Button, useNavbar } from "@nextui-org/react"
+import { useEffect } from "react"
 import { useNavigate, useParams } from "react-router"
 
 export default function ViewBudget() {
@@ -9,6 +10,29 @@ export default function ViewBudget() {
     function handleClick(url){
         navigate(url)
     }
+
+    async function handleFetch(){
+        // const URL = `https://api.ttguitarnoob.cloud/budgets/${id}`
+        const URL = `http://localhost:8000/budgets/${id.id}`
+        const options = {
+            method: "GET"
+        }
+
+        try{
+            const response = await fetch(URL, options)
+            const data = await response.json()
+            console.log('got dada', data)
+            // rows = data
+            // setBudgets(data)
+        } catch(err){
+            console.log("shit happened when fetching that", err)
+        }
+    }
+
+    //Call handleFetch
+    useEffect(() => {
+        handleFetch()
+    }, [])
 
     return(
         <>

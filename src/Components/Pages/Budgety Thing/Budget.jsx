@@ -1,4 +1,4 @@
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue} from "@nextui-org/react";
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Button} from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -26,8 +26,8 @@ export default function App() {
     }
 
     async function handleFetch(){
-        // const URL = "https://api.ttguitarnoob.cloud/budgets"
-        const URL = "http://localhost:8000/budgets"
+        const URL = "https://api.ttguitarnoob.cloud/budgets"
+        // const URL = "http://localhost:8000/budgets"
         const options = {
             method: "GET"
         }
@@ -56,7 +56,7 @@ console.log("thing", budgets)
       <TableBody items={rows}>
         {(item) => (
           <TableRow key={item.key}>
-            {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+            {(columnKey) => <TableCell><Button onClick={() => handleClick(`/budget/${item.key}`)}>{getKeyValue(item, columnKey)}</Button> </TableCell>}
           </TableRow>
         )}
       </TableBody>
