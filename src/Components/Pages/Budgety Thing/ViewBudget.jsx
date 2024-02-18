@@ -1,32 +1,32 @@
-import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react"
+import { Button,  } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 
-let rows = []
+// let rows = []
 
-const columns = [
-    {
-        key: "billName",
-        label: "EXPENSE",
-    },
-    {
-        key: "amount",
-        label: "AMOUNT",
-    },
-    {
-        key: "dueDate",
-        label: "DUE DATE",
-    },
-    {
-        key: "paid",
-        label: "PAID",
-    }
-];
+// const columns = [
+//     {
+//         key: "billName",
+//         label: "EXPENSE",
+//     },
+//     {
+//         key: "amount",
+//         label: "AMOUNT",
+//     },
+//     {
+//         key: "dueDate",
+//         label: "DUE DATE",
+//     },
+//     {
+//         key: "paid",
+//         label: "PAID",
+//     }
+// ];
 
 export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
-    const [state, setRows] = useState()
+    const [pooass, setRows] = useState()
     // let rows = [
     //     {
     //         key: "234",
@@ -36,8 +36,8 @@ export default function ViewBudget() {
     //         paid: "Nope"
     //     }
     // ]
-    
-    
+
+
 
     function handleClick(url) {
         navigate(url)
@@ -53,7 +53,8 @@ export default function ViewBudget() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            rows = data
+            console.log("daa", data)
+            // rows = data.expenses
             setRows(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
@@ -68,9 +69,9 @@ export default function ViewBudget() {
     return (
         <>
             <section>
-                <h1>View Budget for {}</h1>
+                <h1>View Budget for</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
-                <Table aria-label="Example table with dynamic content">
+                {/* <Table aria-label="Example table with dynamic content">
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                     </TableHeader>
@@ -81,7 +82,13 @@ export default function ViewBudget() {
                             </TableRow>
                         )}
                     </TableBody>
-                </Table>
+                </Table> */}
+                <div>
+                    <h2>thing!</h2>
+                    {pooass && pooass.bills.map((onething, index) => (
+                        <p>omg {onething.month}</p>
+                    ))}
+                </div>
             </section>
         </>
     )
