@@ -1,30 +1,61 @@
-import { Button, useNavbar } from "@nextui-org/react"
-import { useEffect } from "react"
+import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+
+let rows = []
+
+const columns = [
+    {
+        key: "billName",
+        label: "EXPENSE",
+    },
+    {
+        key: "amount",
+        label: "AMOUNT",
+    },
+    {
+        key: "dueDate",
+        label: "DUE DATE",
+    },
+    {
+        key: "paid",
+        label: "PAID",
+    }
+];
 
 export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const [state, setRows] = useState()
+    // let rows = [
+    //     {
+    //         key: "234",
+    //         billName: "TAscos",
+    //         amount: 20,
+    //         dueDate: "yesterday",
+    //         paid: "Nope"
+    //     }
+    // ]
+    
+    
 
-    function handleClick(url){
+    function handleClick(url) {
         navigate(url)
     }
 
-    async function handleFetch(){
+    async function handleFetch() {
         // const URL = `https://api.ttguitarnoob.cloud/budgets/${id.id}`
         const URL = `http://localhost:8000/budgets/${id.id}`
         const options = {
             method: "GET"
         }
 
-        try{
+        try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log('got dada', data)
-            // rows = data
-            // setBudgets(data)
-        } catch(err){
+            rows = data
+            setRows(data)
+        } catch (err) {
             console.log("shit happened when fetching that", err)
         }
     }
@@ -34,13 +65,24 @@ export default function ViewBudget() {
         handleFetch()
     }, [])
 
-    return(
+    return (
         <>
-        <section>
-            <h1>View Budget</h1>
-            <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
-            <p>on page {id.id}</p>
-        </section>
+            <section>
+                <h1>View Budget for {}</h1>
+                <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
+                <Table aria-label="Example table with dynamic content">
+                    <TableHeader columns={columns}>
+                        {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+                    </TableHeader>
+                    <TableBody items={rows}>
+                        {(item) => (
+                            <TableRow key={item.key}>
+                                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </section>
         </>
     )
 }

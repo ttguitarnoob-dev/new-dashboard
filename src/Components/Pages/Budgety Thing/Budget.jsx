@@ -15,7 +15,7 @@ const columns = [
   }
 ];
 
-export default function App() {
+export default function Budget() {
 
     const navigate = useNavigate()
     const [budgets, setBudgets] = useState({})
@@ -26,8 +26,8 @@ export default function App() {
     }
 
     async function handleFetch(){
-        const URL = "https://api.ttguitarnoob.cloud/budgets"
-        // const URL = "http://localhost:8000/budgets"
+        // const URL = "https://api.ttguitarnoob.cloud/budgets"
+        const URL = "http://localhost:8000/budgets"
         const options = {
             method: "GET"
         }
@@ -47,8 +47,11 @@ export default function App() {
         handleFetch()
     }, [])
 
-console.log("thing", budgets)
+console.log("thing", rows)
   return (
+    <>
+    <h1 className="page-title">Budgety Thing</h1>
+                <Button onClick={() => handleClick("/budget/new")}>Add Month</Button>
     <Table aria-label="Example table with dynamic content">
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -61,6 +64,7 @@ console.log("thing", budgets)
         )}
       </TableBody>
     </Table>
+    </>
   );
 }
 
