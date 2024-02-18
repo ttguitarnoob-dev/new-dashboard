@@ -1,6 +1,7 @@
 import { Button,  } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+import ViewBudgetTable from "../../UI Components/ViewBudgetTable"
 
 // let rows = []
 
@@ -71,6 +72,7 @@ export default function ViewBudget() {
             <section>
                 <h1>View Budget for</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
+                <ViewBudgetTable />
                 {/* <Table aria-label="Example table with dynamic content">
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
