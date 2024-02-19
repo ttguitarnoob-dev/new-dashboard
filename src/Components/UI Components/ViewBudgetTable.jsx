@@ -4,34 +4,6 @@ import { useCallback } from "react";
 import { oneBudgetColumns } from "../../utils/tableData";
 
 
-  // const rows = [
-  //   {
-  //     billName: 'Rent',
-  //     howMuch: 1600,
-  //     dueDate: '2024-10-01T05:00:00.000Z',
-  //     paidDate: null,
-  //     paid: false,
-  //     _id: '65d10f6201f56a3f0c4efe0e'
-  //   },
-  //   {
-  //     billName: 'Car',
-  //     howMuch: 422,
-  //     dueDate: '2024-10-04T05:00:00.000Z',
-  //     paidDate: null,
-  //     paid: false,
-  //     _id: '65d10f6201f56a3f0c4efe0f'
-  //   },
-  //   {
-  //     billName: 'Poohole',
-  //     howMuch: 1634400,
-  //     dueDate: '2024-10-01T05:00:00.000Z',
-  //     paidDate: null,
-  //     paid: true,
-  //     _id: "65d12077146dfd8baeb52226"
-  //   }
-  // ]
- 
-
 const statusColorMap = {
   active: "success",
   paused: "danger",
@@ -41,7 +13,6 @@ const statusColorMap = {
 export default function ViewBudgetTable({columns, rows}) {
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
-    console.log('dateme', new Date('2024-10-01T05:00:00.000Z').toLocaleDateString())
     
 
     switch (columnKey) {

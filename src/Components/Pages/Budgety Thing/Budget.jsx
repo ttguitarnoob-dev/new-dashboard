@@ -47,7 +47,6 @@ export default function Budget() {
         handleFetch()
     }, [])
 
-console.log("thing", rows)
   return (
     <>
     <h1 className="page-title">Budgety Thing</h1>
@@ -67,63 +66,3 @@ console.log("thing", rows)
     </>
   );
 }
-
-
-
-// import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@nextui-org/react";
-// import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router";
-
-// export default function Budget() {
-//     const navigate = useNavigate()
-//     const [budgets, setBudgets] = useState({})
-
-//     function handleClick(url) {
-//         navigate(url)
-//     }
-
-//     async function handleFetch(){
-//         const URL = "https://api.ttguitarnoob.cloud/budgets"
-//         const options = {
-//             method: "GET"
-//         }
-
-//         try{
-//             const response = await fetch(URL, options)
-//             const data = await response.json()
-//             setBudgets(data)
-//         } catch(err){
-//             console.log("shit happened when fetching that")
-//         }
-//     }
-
-//     //Call handleFetch
-//     useEffect(() => {
-//         handleFetch()
-//     }, [])
-
-//     // console.log(budgets[3].month, budgets[3].unpaid)
-
-//     return (
-//         <>
-//             <section>
-//                 <h1 className="page-title">Budgety Thing</h1>
-//                 <Button onClick={() => handleClick("/budget/new")}>Add Month</Button>
-//                 <Table aria-label="Example static collection table">
-//                     <TableHeader>
-//                         <TableColumn>MONTH</TableColumn>
-//                         <TableColumn>UNPAID</TableColumn>
-//                     </TableHeader>
-//                     <TableBody items={budgets}>
-//                         {(oneBudget) => (
-//                             <TableRow key={oneBudget._id}>
-
-//                             </TableRow>
-//                         )}
-                        
-//                     </TableBody>
-//                 </Table>
-//             </section>
-//         </>
-//     )
-// }

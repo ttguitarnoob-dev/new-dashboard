@@ -93,8 +93,6 @@ export default function ViewBudget() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log("daa", data)
-            
             setRows(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
@@ -120,25 +118,8 @@ export default function ViewBudget() {
             <section>
                 <h1>View Budget for {pooass.month}</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
-                <ViewBudgetTable columns={columns} rows={pooass} />
-                {/* <Table aria-label="Example table with dynamic content">
-                    <TableHeader columns={columns}>
-                        {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-                    </TableHeader>
-                    <TableBody items={rows}>
-                        {(item) => (
-                            <TableRow key={item.key}>
-                                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table> */}
-                <div>
-                    {/* <h2>thing!</h2>
-                    {pooass && pooass.bills.map((onething, index) => (
-                        <p>omg {onething.month}</p>
-                    ))} */}
-                </div>
+                <ViewBudgetTable columns={columns} rows={pooass.expenses} />
+                
             </section>
         </>
     )
