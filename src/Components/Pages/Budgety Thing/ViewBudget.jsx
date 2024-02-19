@@ -1,33 +1,72 @@
-import { Button,  } from "@nextui-org/react"
+import { Button, } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import ViewBudgetTable from "../../UI Components/ViewBudgetTable"
 
-// let rows = []
+const columns = [
+    { name: "EXPENSE", uid: "billName" },
+    { name: "AMOUNT", uid: "howMuch" },
+    { name: "DUE DATE", uid: "dueDate" },
+];
 
-// const columns = [
-//     {
-//         key: "billName",
-//         label: "EXPENSE",
-//     },
-//     {
-//         key: "amount",
-//         label: "AMOUNT",
-//     },
-//     {
-//         key: "dueDate",
-//         label: "DUE DATE",
-//     },
-//     {
-//         key: "paid",
-//         label: "PAID",
-//     }
-// ];
+const users = [
+    {
+        id: 1,
+        name: "Tony Reichert",
+        role: "CEO",
+        team: "Management",
+        status: "active",
+        age: "29",
+        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+        email: "tony.reichert@example.com",
+    },
+    {
+        id: 2,
+        name: "Zoey Lang",
+        role: "Technical Lead",
+        team: "Development",
+        status: "paused",
+        age: "25",
+        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+        email: "zoey.lang@example.com",
+    },
+    {
+        id: 3,
+        name: "Jane Fisher",
+        role: "Senior Developer",
+        team: "Development",
+        status: "active",
+        age: "22",
+        avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+        email: "jane.fisher@example.com",
+    },
+    {
+        id: 4,
+        name: "William Howard",
+        role: "Community Manager",
+        team: "Marketing",
+        status: "vacation",
+        age: "28",
+        avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
+        email: "william.howard@example.com",
+    },
+    {
+        id: 5,
+        name: "Kristen Copper",
+        role: "Sales Manager",
+        team: "Sales",
+        status: "active",
+        age: "24",
+        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
+        email: "kristen.cooper@example.com",
+    },
+];
 
 export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
     const [pooass, setRows] = useState()
+    let rows = []
     // let rows = [
     //     {
     //         key: "234",
@@ -55,7 +94,7 @@ export default function ViewBudget() {
             const response = await fetch(URL, options)
             const data = await response.json()
             console.log("daa", data)
-            // rows = data.expenses
+            
             setRows(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
@@ -67,12 +106,21 @@ export default function ViewBudget() {
         handleFetch()
     }, [])
 
+    //Loading Screen
+    if (!pooass) {
+        return (
+            <section>
+                <h1>Loading items</h1>
+            </section>
+        )
+    }
+
     return (
         <>
             <section>
-                <h1>View Budget for</h1>
+                <h1>View Budget for {pooass.month}</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
-                <ViewBudgetTable />
+                <ViewBudgetTable columns={columns} rows={pooass} />
                 {/* <Table aria-label="Example table with dynamic content">
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -86,10 +134,10 @@ export default function ViewBudget() {
                     </TableBody>
                 </Table> */}
                 <div>
-                    <h2>thing!</h2>
+                    {/* <h2>thing!</h2>
                     {pooass && pooass.bills.map((onething, index) => (
                         <p>omg {onething.month}</p>
-                    ))}
+                    ))} */}
                 </div>
             </section>
         </>

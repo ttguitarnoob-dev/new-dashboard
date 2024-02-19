@@ -8,7 +8,7 @@ const oneBudgetColumns = [
         label: "EXPENSE",
     },
     {
-        key: "amount",
+        key: "howMuch",
         label: "AMOUNT",
     },
     {
