@@ -1,24 +1,12 @@
-const budgetListColumns = [
-    
+const incomesColumns = [
+    { name: "SOURCE", key: "source" },
+    { name: "AMOUNT", key: "amount" },
 ]
 
-const oneBudgetColumns = [
-    {
-        key: "billName",
-        label: "EXPENSE",
-    },
-    {
-        key: "howMuch",
-        label: "AMOUNT",
-    },
-    {
-        key: "dueDate",
-        label: "DUE DATE",
-    },
-    // {
-    //     key: "paid",
-    //     label: "PAID",
-    // }
+const expensesColumns = [
+    { name: "EXPENSE", key: "billName" },
+    { name: "AMOUNT", key: "howMuch" },
+    { name: "DUE DATE", key: "dueDate" },
 ]
 
-export { budgetListColumns, oneBudgetColumns }
+export { incomesColumns, expensesColumns }
