@@ -44,7 +44,7 @@ export default function ViewIncomeTable({columns, rows}) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={rows}>
+      <TableBody emptyContent={"No Incomes added yet."} items={rows}>
         {(item) => (
           <TableRow key={item._id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
