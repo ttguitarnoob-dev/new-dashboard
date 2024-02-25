@@ -1,20 +1,19 @@
 import { Button, Input } from "@nextui-org/react";
+import { useNavigate } from "react-router";
 
 export default function NewIncome({id}) {
+    const navigate = useNavigate()
 const initialInput = {}
     function handleChange(e){
         var edited = e.target.name
         initialInput[edited] = e.target.value
-        console.log('omgchanged', initialInput)
     }
 
     async function handleSubmit(e){
         e.preventDefault()
         
         initialInput.amount = parseFloat(initialInput.amount)
-        console.log("adding income", initialInput)
         const URL = `http://localhost:8000/budgets/new-income/${id.id}`
-        console.log("the id???", id)
         const options = {
             method: "PUT",
             body: JSON.stringify(initialInput),
@@ -25,7 +24,8 @@ const initialInput = {}
         try{
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log("daata", data)
+            navigate(`/budget/`)
+            return data
         } catch(err){
             console.log("somtehing terrible happened when adding income", err)
         }

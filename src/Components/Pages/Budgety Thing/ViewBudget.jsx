@@ -29,7 +29,6 @@ export default function ViewBudget() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log('datata', data)
             setRows(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
