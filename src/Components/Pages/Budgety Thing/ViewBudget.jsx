@@ -5,6 +5,8 @@ import ViewBudgetTable from "../../UI Components/ViewBudgetTable"
 import ViewIncomeTable from "../../UI Components/ViewIncomesTable";
 import { incomesColumns, expensesColumns } from "../../../utils/tableData";
 import NewIncome from "./NewIncome";
+import NewBudget from "./NewBudget";
+import NewExpense from "./NewExpense";
 
 
 
@@ -55,6 +57,7 @@ export default function ViewBudget() {
                 <h1>View Budget for {kitty.allData.month}</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
                 <Button onClick={() => handleClick("/budget/add-expense")}>Add An Expense</Button>
+                <NewExpense />
                 <ViewBudgetTable columns={expensesColumns} rows={kitty.expenses} />
                 <h2>Income</h2>
                 <NewIncome id={id} />
