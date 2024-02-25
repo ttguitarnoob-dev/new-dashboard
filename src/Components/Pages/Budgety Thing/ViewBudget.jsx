@@ -4,13 +4,14 @@ import { useNavigate, useParams } from "react-router"
 import ViewBudgetTable from "../../UI Components/ViewBudgetTable"
 import ViewIncomeTable from "../../UI Components/ViewIncomesTable";
 import { incomesColumns, expensesColumns } from "../../../utils/tableData";
+import NewIncome from "./NewIncome";
 
 
 
 export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
-    const [pooass, setRows] = useState()
+    const [kitty, setRows] = useState()
    
 
 
@@ -41,7 +42,7 @@ export default function ViewBudget() {
     }, [])
 
     //Loading Screen
-    if (!pooass) {
+    if (!kitty) {
         return (
             <section>
                 <h1>Loading items</h1>
@@ -52,12 +53,13 @@ export default function ViewBudget() {
     return (
         <>
             <section>
-                <h1>View Budget for {pooass.allData.month}</h1>
+                <h1>View Budget for {kitty.allData.month}</h1>
                 <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
                 <Button onClick={() => handleClick("/budget/add-expense")}>Add An Expense</Button>
-                <ViewBudgetTable columns={expensesColumns} rows={pooass.expenses} />
+                <ViewBudgetTable columns={expensesColumns} rows={kitty.expenses} />
                 <h2>Income</h2>
-                <ViewIncomeTable columns={incomesColumns} rows={pooass.incomes} />
+                <NewIncome id={id} />
+                <ViewIncomeTable columns={incomesColumns} rows={kitty.incomes} />
                 
             </section>
         </>
