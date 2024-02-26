@@ -38,6 +38,7 @@ export default function ViewBudget() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
+            console.log('data', data)
             setRows(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
@@ -61,11 +62,16 @@ export default function ViewBudget() {
     return (
         <>
 
-        {/* We'll click a row to bring up a modal that has actions such as delete the expense, pay it, or edit it(maybe if I can figure that out lol).  We'll do this by activating "rows actions" on the table, and passing the open modal and the id into the function */}
+            {/* We'll click a row to bring up a modal that has actions such as delete the expense, pay it, or edit it(maybe if I can figure that out lol).  We'll do this by activating "rows actions" on the table, and passing the open modal and the id into the function */}
 
-        
+
             <section>
-                <h1>View Budget for {kitty.allData.month}</h1>
+                <section>
+                    <h1>View Budget for {kitty.allData.month}</h1>
+                    <p>Total Income: {kitty.totalIncome}</p>
+                    {/* Need to make the backend calculate unpaid when a new expense is added */}
+                    <p>Total Unpaid: {kitty.allData.unpaid}</p>
+                </section>
                 <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>
                 <Button onPress={() => handleOpen(<NewExpense id={id} />)}>Add An Expense</Button>
 
