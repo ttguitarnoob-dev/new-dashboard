@@ -60,6 +60,10 @@ export default function ViewBudget() {
 
     return (
         <>
+
+        {/* We'll click a row to bring up a modal that has actions such as delete the expense, pay it, or edit it(maybe if I can figure that out lol).  We'll do this by activating "rows actions" on the table, and passing the open modal and the id into the function */}
+
+        
             <section>
                 <h1>View Budget for {kitty.allData.month}</h1>
                 <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>

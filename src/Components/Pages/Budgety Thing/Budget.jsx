@@ -49,6 +49,8 @@ export default function Budget() {
 
   return (
     <>
+
+
     <h1 className="page-title">Budgety Thing</h1>
                 <Button onClick={() => handleClick("/budget/new")}>Add Month</Button>
     <Table aria-label="Example table with dynamic content">

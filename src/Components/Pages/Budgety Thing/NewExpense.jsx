@@ -1,8 +1,10 @@
 import { Button, Input } from "@nextui-org/react"
+import { useNavigate } from "react-router"
 
-export default function NewExpense({id}) {
+export default function NewExpense({ id }) {
 
     const initialInput = {}
+    const navigate = useNavigate()
 
     function handleChange(e) {
         var edited = e.target.name
@@ -14,9 +16,26 @@ export default function NewExpense({id}) {
 
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        initialInput.howMuch = parseFloat(initialInput.howMuch)
+        const URL = `http://localhost:8000/budgets/new-expense/${id.id}`
+        const options = {
+            method: "PUT",
+            body: JSON.stringify(initialInput),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
         console.log('submitted', initialInput)
+        try {
+            const response = await fetch(URL, options)
+            const data = await response.json()
+            navigate(`/budget`)
+            return data
+        } catch (err) {
+            console.log("We couldn't add the expense so I guess we just won't pay it", err)
+        }
     }
 
     return (

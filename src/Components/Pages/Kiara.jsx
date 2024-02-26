@@ -4,6 +4,7 @@ export default function Kiara() {
     const itemList = [
         { text: "Tombstone Stuff", link: "/tombstone", tab: false },
         { text: "School Stuff", link: "/academy", tab: false },
+        { text: "Budgety Thing", link: "/budget", tab: false },
 
     ]
 
