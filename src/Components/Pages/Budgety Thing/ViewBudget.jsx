@@ -1,4 +1,4 @@
-import { Button, } from "@nextui-org/react"
+import { Button, useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import ViewBudgetTable from "../../UI Components/ViewBudgetTable"
@@ -13,12 +13,19 @@ import NewExpense from "./NewExpense";
 export default function ViewBudget() {
     const id = useParams()
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [kitty, setRows] = useState()
-   
+    const [modal, setModal] = useState()
+
 
 
     function handleClick(url) {
         navigate(url)
+    }
+
+    function handleOpen(component) {
+        setModal(component)
+        onOpen()
     }
 
     async function handleFetch() {
@@ -55,15 +62,34 @@ export default function ViewBudget() {
         <>
             <section>
                 <h1>View Budget for {kitty.allData.month}</h1>
-                <Button onClick={() => handleClick("/budget")}>Back to Budgets</Button>
-                <Button onClick={() => handleClick("/budget/add-expense")}>Add An Expense</Button>
-                <NewExpense />
+                <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>
+                <Button onPress={() => handleOpen(<NewExpense id={id} />)}>Add An Expense</Button>
+
                 <ViewBudgetTable columns={expensesColumns} rows={kitty.expenses} />
                 <h2>Income</h2>
-                <NewIncome id={id} />
+                <Button onPress={() => handleOpen(<NewIncome id={id} />)}>Add An Income</Button>
+
                 <ViewIncomeTable columns={incomesColumns} rows={kitty.incomes} />
-                
+
             </section>
+            <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                            <ModalBody>
+                                {modal}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    Close
+                                </Button>
+
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </>
     )
 }

@@ -1,6 +1,6 @@
 import { Button, Input } from "@nextui-org/react"
 
-export default function NewExpense() {
+export default function NewExpense({id}) {
 
     const initialInput = {}
 
@@ -24,7 +24,7 @@ export default function NewExpense() {
             <h2>Add An Expense</h2>
             <Input
                 name="billName"
-                label="Expense Name"
+                label="Add An Expense"
                 id="billName"
                 type="text"
                 onChange={handleChange}
