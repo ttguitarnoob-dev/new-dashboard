@@ -44,7 +44,7 @@ export default function ModifyBudgetModal({ id, data }) {
         }
         try{
             const updatedItem = await fetch(URL, options)
-            
+            window.location.reload()
         } catch(err) {
             console.log("you broke the put method bro from updating a budget item", err)
         }
