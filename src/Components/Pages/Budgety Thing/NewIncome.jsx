@@ -37,7 +37,7 @@ export default function NewIncome({ id }) {
 
     return (
         <>
-            <h2>Add Income</h2>
+            <h2 className="text-3xl p-3">Add Income</h2>
             <Input
                 name="source"
                 label="Income Source"

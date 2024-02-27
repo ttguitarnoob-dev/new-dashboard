@@ -95,7 +95,7 @@ export default function ViewBudget() {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                            
                             <ModalBody>
                                 {modal}
                             </ModalBody>

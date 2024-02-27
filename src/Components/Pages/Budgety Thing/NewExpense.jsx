@@ -40,7 +40,7 @@ export default function NewExpense({ id }) {
 
     return (
         <>
-            <h2>Add An Expense</h2>
+            <h2 className="text-3xl p-3">Add An Expense</h2>
             <Input
                 name="billName"
                 label="Add An Expense"
