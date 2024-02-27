@@ -13,6 +13,7 @@ import ModifyBudgetModal from "./ModifyBudgetModal";
 // };
 
 export default function ViewBudgetTable({ columns, rows }) {
+
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
 
@@ -31,7 +32,7 @@ export default function ViewBudgetTable({ columns, rows }) {
         return (
           <div className="flex flex-col">
             <p className="text-bold text-sm capitalize">${cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">{smell.paid}</p>
+            <p className="text-bold text-sm capitalize text-default-400"><span style={{ color: choosePaidColor(smell.paid) }}>{smell.paid}</span></p>
           </div>
         );
       case "dueDate":
@@ -45,6 +46,16 @@ export default function ViewBudgetTable({ columns, rows }) {
         return cellValue;
     }
   }, []);
+
+  function choosePaidColor(paid) {
+    console.log("paidcolor", paid)
+    if (paid === "Paid") {
+      return "green"
+    } else {
+      return "red"
+    }
+
+  }
 
   // Modal stuff
 
