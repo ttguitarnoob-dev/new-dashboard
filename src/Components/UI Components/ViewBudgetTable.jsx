@@ -1,5 +1,5 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, ModalContent, Modal, ModalBody, ModalFooter, button, Button } from "@nextui-org/react";
 import { click } from "@testing-library/user-event/dist/click";
 import { useCallback, useState } from "react";
 import ModifyBudgetModal from "./ModifyBudgetModal";
@@ -49,33 +49,54 @@ export default function ViewBudgetTable({ columns, rows }) {
   // Modal stuff
 
   const [modal, setModal] = useState()
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   function openModal(clickedItem, component) {
     setModal(component)
+    onOpen()
     console.log('hello modal', clickedItem)
   }
 
   return (
-    <Table
-      isStriped
-      aria-label="View Budget Table"
-      selectionBehavior="toggle"
-      onRowAction={(index) => openModal(index, <ModifyBudgetModal id={index} />)}
-    >
-      <TableHeader columns={columns}>
-        {(column) => (
-          <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={rows}>
-        {(item) => (
-          <TableRow key={item._id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <>
+      <Table
+        isStriped
+        aria-label="View Budget Table"
+        selectionBehavior="toggle"
+        onRowAction={(index) => openModal(index, <ModifyBudgetModal id={index} />)}
+      >
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows}>
+          {(item) => (
+            <TableRow key={item._id}>
+              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+      <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+
+              <ModalBody>
+                {modal}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
