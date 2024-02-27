@@ -66,20 +66,29 @@ export default function ViewBudget() {
 
 
             <section>
-                <section>
-                    <h1>View Budget for {kitty.allData.month}</h1>
-                    <p>Total Income: {kitty.totalIncome}</p>
-                    {/* Need to make the backend calculate unpaid when a new expense is added */}
-                    <p>Total Unpaid: {kitty.allData.unpaid}</p>
+                <section className="p-6">
+                    <h1 className="mb-10 text-5xl">{kitty.allData.month}</h1>
+                    <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>
+                    <div className="budget-view text-2xl mt-10 mb-10">
+                        <p>Total Income: ${kitty.totalIncome}</p>
+                        {/* Need to make the backend calculate unpaid when a new expense is added */}
+                        <p>Total Unpaid: <span style={{ color: "red" }}>${kitty.allData.unpaid}</span></p>
+                    </div>
+                <div>
+                    <Button className="mr-7" onPress={() => handleOpen(<NewExpense id={id} />)}>Add An Expense</Button>
+                    <Button onPress={() => handleOpen(<NewIncome id={id} />)}>Add An Income</Button>
+                </div>
                 </section>
-                <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>
-                <Button onPress={() => handleOpen(<NewExpense id={id} />)}>Add An Expense</Button>
 
-                <ViewBudgetTable columns={expensesColumns} rows={kitty.expenses} />
-                <h2>Income</h2>
-                <Button onPress={() => handleOpen(<NewIncome id={id} />)}>Add An Income</Button>
+                <div className="mt-10">
+                    <h2 className="mb-5 p-5 text-lg">Expenses</h2>
+                    <ViewBudgetTable columns={expensesColumns} rows={kitty.expenses} />
+                </div>
 
-                <ViewIncomeTable columns={incomesColumns} rows={kitty.incomes} />
+                <div className="mt-10">
+                    <h2 className="mb-5 p-3 text-lg">Income</h2>
+                    <ViewIncomeTable columns={incomesColumns} rows={kitty.incomes} />
+                </div>
 
             </section>
             <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
