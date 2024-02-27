@@ -27,7 +27,12 @@ export default function ModifyBudgetModal({ id, data }) {
 
     //Pay Bill
     function payBill(){
-        allData.allData.bills[id].paid = true
+        const theBill = allData.allData.bills[id].paid
+        if (!theBill){
+            allData.allData.bills[id].paid = true
+        }else {
+            allData.allData.bills[id].paid = false
+        }
         handlePut()
     }
 
@@ -65,7 +70,7 @@ export default function ModifyBudgetModal({ id, data }) {
                 <h1>Modify This Budget Item</h1>
                 <p>{id}</p>
                 <p>{pageID.id}</p>
-                <Button onClick={payBill}>Pay</Button>
+                <Button onClick={payBill}>Update Paid Status</Button>
             </section>
         </>
     )
