@@ -2,6 +2,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import { click } from "@testing-library/user-event/dist/click";
 import { useCallback, useState } from "react";
+import ModifyBudgetModal from "./ModifyBudgetModal";
 // import { oneBudgetColumns } from "../../utils/tableData";
 
 
@@ -49,7 +50,8 @@ export default function ViewBudgetTable({ columns, rows }) {
 
   const [modal, setModal] = useState()
 
-  function openModal(clickedItem) {
+  function openModal(clickedItem, component) {
+    setModal(component)
     console.log('hello modal', clickedItem)
   }
 
@@ -58,7 +60,7 @@ export default function ViewBudgetTable({ columns, rows }) {
       isStriped
       aria-label="View Budget Table"
       selectionBehavior="toggle"
-      onRowAction={(index) => openModal(index)}
+      onRowAction={(index) => openModal(index, <ModifyBudgetModal id={index} />)}
     >
       <TableHeader columns={columns}>
         {(column) => (
