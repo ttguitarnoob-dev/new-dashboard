@@ -1,6 +1,7 @@
 
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
-import { useCallback } from "react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { click } from "@testing-library/user-event/dist/click";
+import { useCallback, useState } from "react";
 // import { oneBudgetColumns } from "../../utils/tableData";
 
 
@@ -10,10 +11,13 @@ import { useCallback } from "react";
 //   vacation: "warning",
 // };
 
-export default function ViewBudgetTable({columns, rows}) {
+export default function ViewBudgetTable({ columns, rows }) {
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
-    
+
+
+
+
 
     switch (columnKey) {
       case "billName":
@@ -35,14 +39,27 @@ export default function ViewBudgetTable({columns, rows}) {
             <p>{cellValue}</p>
           </div>
         );
-      
+
       default:
         return cellValue;
     }
   }, []);
 
+  // Modal stuff
+
+  const [modal, setModal] = useState()
+
+  function openModal(clickedItem) {
+    console.log('hello modal', clickedItem)
+  }
+
   return (
-  <Table isStriped aria-label="View Budget Table">
+    <Table
+      isStriped
+      aria-label="View Budget Table"
+      selectionBehavior="toggle"
+      onRowAction={(index) => openModal(index)}
+    >
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>

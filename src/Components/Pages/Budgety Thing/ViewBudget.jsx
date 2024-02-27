@@ -69,11 +69,14 @@ export default function ViewBudget() {
                 <section className="p-6">
                     <h1 className="mb-10 text-5xl">{kitty.allData.month}</h1>
                     <Button onPress={() => handleClick("/budget")}>Back to Budgets</Button>
+
+                    {/* Income and Unpaid display section */}
                     <div className="budget-view text-2xl mt-10 mb-10">
                         <p>Total Income: ${kitty.totalIncome}</p>
-                        {/* Need to make the backend calculate unpaid when a new expense is added */}
-                        <p>Total Unpaid: <span style={{ color: "red" }}>${kitty.allData.unpaid}</span></p>
+                        <hr className="mt-3 mb-3"></hr>
+                        <p>Total Unpaid: <span style={{ color: "red" }}>${kitty.allData.unpaid}0</span></p>
                     </div>
+
                 <div>
                     <Button className="mr-7" onPress={() => handleOpen(<NewExpense id={id} />)}>Add An Expense</Button>
                     <Button onPress={() => handleOpen(<NewIncome id={id} />)}>Add An Income</Button>
