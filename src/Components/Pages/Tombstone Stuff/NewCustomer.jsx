@@ -4,10 +4,25 @@ import { useNavigate } from "react-router";
 export default function NewCustomer() {
     const navigate = useNavigate()
     const initialInput = {}
+    const postURL = "https://api.ttguitarnoob.cloud/customers"
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+
+        const postOptions = {
+            method: "POST",
+            body: JSON.stringify(initialInput),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
         console.log("Submitted", initialInput)
+
+        const response = await fetch(postURL, postOptions)
+        const data = await response.json()
+        console.log('submitted data?', data)
+        navigate('/tombstone/customers')
+        return data
     }
 
     function handleChange(e) {
