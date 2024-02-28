@@ -59,7 +59,7 @@ export default function NewBudget() {
                             </SelectItem>
                         ))}
                     </Select>
-                    <Button onClick={handleSubmit}>Submit</Button>
+                    <Button className="ml-3 mt-10" onClick={handleSubmit}>Submit</Button>
                 </form>
             </section>
         </section>
