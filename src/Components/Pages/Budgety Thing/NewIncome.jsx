@@ -25,7 +25,7 @@ export default function NewIncome({ id }) {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            navigate(`/budget`)
+            window.location.reload()
             return data
         } catch (err) {
             console.log("somtehing terrible happened when adding income", err)

@@ -1,12 +1,14 @@
 import { Button } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
+import { DollarIcon } from "./SVG Icons/DollarIcon"
 
 export default function ModifyBudgetModal({ id, data }) {
     const pageID = useParams()
     const [allData, setAllData] = useState()
     console.log('pageid', pageID)
     const URL = `https://api.ttguitarnoob.cloud/budgets/${pageID.id}`
+    const putURL = `https://api.ttguitarnoob.cloud/budgets/update-unpaid/${pageID.id}`
 
     async function handleFetch(){
         const options = {
@@ -48,7 +50,7 @@ export default function ModifyBudgetModal({ id, data }) {
             }
         }
         try{
-            const updatedItem = await fetch(URL, options)
+            const updatedItem = await fetch(putURL, options)
             window.location.reload()
         } catch(err) {
             console.log("you broke the put method bro from updating a budget item", err)
@@ -67,10 +69,9 @@ export default function ModifyBudgetModal({ id, data }) {
     return (
         <>
             <section>
-                <h1>Modify This Budget Item</h1>
-                <p>{id}</p>
-                <p>{pageID.id}</p>
-                <Button onClick={payBill}>Update Paid Status</Button>
+                <h1 className="text-2xl">Modify This Budget Item</h1>
+                
+                <Button startContent={<DollarIcon/>} className="mt-10" onClick={payBill}>Update Paid Status</Button>
             </section>
         </>
     )
