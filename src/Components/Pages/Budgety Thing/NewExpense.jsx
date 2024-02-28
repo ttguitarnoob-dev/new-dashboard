@@ -19,6 +19,7 @@ export default function NewExpense({ id }) {
     async function handleSubmit(e) {
         e.preventDefault()
         initialInput.howMuch = parseFloat(initialInput.howMuch)
+        // const URL = `https://api.ttguitarnoob.cloud/budgets/new-expense/${id.id}`
         const URL = `https://api.ttguitarnoob.cloud/budgets/new-expense/${id.id}`
         const options = {
             method: "PUT",
@@ -31,7 +32,7 @@ export default function NewExpense({ id }) {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            navigate(`/budget`)
+            window.location.reload()
             return data
         } catch (err) {
             console.log("We couldn't add the expense so I guess we just won't pay it", err)

@@ -75,7 +75,7 @@ export default function ViewBudget() {
                         <p>Total Income: ${kitty.totalIncome}</p>
                         <p>Tithe: ${kitty.allData.tithe}</p>
                         <hr className="mt-3 mb-3"></hr>
-                        <p>Total Unpaid: <span style={{ color: "red" }}>${kitty.allData.unpaid}0</span></p>
+                        <p>Total Unpaid: <span style={{ color: "red" }}>${kitty.allData.unpaid}</span></p>
                     </div>
 
                 <div>
