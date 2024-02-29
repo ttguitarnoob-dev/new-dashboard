@@ -92,7 +92,6 @@ export default function CustomerDetails() {
                 <section>
                     <Button onClick={addJob}>Add Job</Button>
                     <h2>Jobs</h2>
-                    table here
                     <JobsTable columns={jobsColumns} rows={data.jobs} />
                 </section>
                 <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
