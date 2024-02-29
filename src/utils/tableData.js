@@ -13,7 +13,11 @@ const customersColumns = [
     { name: "NAME", key: "name" },
     { name: "CONTACT", key: "phone" }
 ]
+const jobsColumns = [
+    { name: "LOCATION", key: "location" },
+    { name: "COMPLETE BY", key: "date" }
+]
 
 
 
-export { incomesColumns, expensesColumns, customersColumns }
+export { incomesColumns, expensesColumns, customersColumns, jobsColumns }

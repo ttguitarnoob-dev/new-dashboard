@@ -1,6 +1,8 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Input, Textarea, CheckboxGroup, Checkbox } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+import { jobsColumns } from "../../../utils/tableData"
+import JobsTable from "../../UI Components/JobsTable"
 
 export default function CustomerDetails() {
     const { id } = useParams()
@@ -88,9 +90,10 @@ export default function CustomerDetails() {
                     <p>{data.customerNotes}</p>
                 </div>
                 <section>
-                    <h2>Jobs</h2>
                     <Button onClick={addJob}>Add Job</Button>
+                    <h2>Jobs</h2>
                     table here
+                    <JobsTable columns={jobsColumns} rows={data.jobs} />
                 </section>
                 <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
                     <ModalContent>
@@ -113,7 +116,7 @@ export default function CustomerDetails() {
                                     </div>
                                     <div className="mb-5">
                                         <Input
-                                            label="Date"
+                                            label="Complete By Date"
                                             type="date"
                                             onChange={handleChange}
                                             name="date"
@@ -139,7 +142,7 @@ export default function CustomerDetails() {
                                         >
 
                                         {services && services.map((oneService, index) => (
-                                            <Checkbox value={index}>{oneService.name}</Checkbox>
+                                            <Checkbox key={oneService._id} value={index}>{oneService.name}</Checkbox>
                                         ))}
                                         </CheckboxGroup>
 
