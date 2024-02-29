@@ -9,4 +9,11 @@ const expensesColumns = [
     { name: "DUE DATE", key: "dueDate" },
 ]
 
-export { incomesColumns, expensesColumns }
+const customersColumns = [
+    { name: "NAME", key: "name" },
+    { name: "CONTACT", key: "phone" }
+]
+
+
+
+export { incomesColumns, expensesColumns, customersColumns }

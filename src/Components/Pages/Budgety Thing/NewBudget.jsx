@@ -1,5 +1,5 @@
-import { Button, Input, Select, SelectItem, useNavbar } from "@nextui-org/react"
-import { useNavigate, useParams } from "react-router"
+import { Button, Select, SelectItem } from "@nextui-org/react"
+import { useNavigate } from "react-router"
 
 export default function NewBudget() {
     
@@ -9,9 +9,6 @@ export default function NewBudget() {
     }
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-    function handleClick(url){
-        navigate(url)
-    }
 
     async function handleSubmit(e) {
         e.preventDefault()

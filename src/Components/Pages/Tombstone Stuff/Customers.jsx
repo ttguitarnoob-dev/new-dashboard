@@ -1,6 +1,8 @@
 import { Button } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { customersColumns } from "../../../utils/tableData";
+import CustomerListTable from "../../UI Components/CustomerListTable";
 
 export default function Customers() {
     const navigate = useNavigate()
@@ -28,6 +30,14 @@ export default function Customers() {
         handleFetch()
     }, [])
 
+    if (!customers) {
+        return (
+            <section>
+                <h1>Loading items</h1>
+            </section>
+        )
+    }
+
     return(
         <>
         <section>
@@ -35,13 +45,14 @@ export default function Customers() {
             <Button onClick={() => navigate("/tombstone/customers/new")} >
                 New Customer
             </Button>
-        {customers && customers.map((oneCustomer) => (
+            <CustomerListTable columns={customersColumns} rows={customers}  />
+        {/* {customers && customers.map((oneCustomer) => (
             <>
             <section>
                 {oneCustomer.name}
             </section>
             </>
-        ))}
+        ))} */}
         </section>
         </>
     )

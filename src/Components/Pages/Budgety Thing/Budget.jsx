@@ -19,6 +19,7 @@ export default function Budget() {
 
   const navigate = useNavigate()
   const [budgets, setBudgets] = useState({})
+  console.log('budgets?', budgets)
 
 
   function handleClick(url) {
