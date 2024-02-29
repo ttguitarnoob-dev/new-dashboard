@@ -30,10 +30,16 @@ export default function NewCustomer() {
         initialInput[edited] = e.target.value
     }
 
+    function handleClick(link){
+        navigate(link)
+    }
+
+
     return (
         <>
             <section>
                 <h1 className="page-title">Create a New Customer</h1>
+                <Button onClick={() => handleClick('/tombstone/customers')} className="ml-8">Back To All Customers</Button>
 
                 <section className="p-8">
                     <form>
@@ -82,7 +88,7 @@ export default function NewCustomer() {
                 </section>
 
 
-                <Button onClick={handleSubmit} >
+                <Button className="m-8" onClick={handleSubmit} >
                     Submit
                 </Button>
             </section>

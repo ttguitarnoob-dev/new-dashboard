@@ -6,7 +6,6 @@ import { useCallback } from "react";
 
 
 export default function CustomerListTable({columns, rows}) {
-    console.log("columns and rows man", columns, rows)
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
     
@@ -15,14 +14,14 @@ export default function CustomerListTable({columns, rows}) {
       case "name":
         return (
           <div>
-            <p>{cellValue}</p>
+            <a href={`/tombstone/customers/${smell._id}`}><p>{cellValue}</p></a>
           </div>
         );
       case "phone":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">{smell.email}</p>
+            <a href={`tel:${cellValue}`}><p className="text-bold text-sm capitalize">{cellValue}</p></a>
+            <a href={`mailto:${smell.email}`}><p className="text-bold text-sm capitalize text-default-400">{smell.email}</p></a>
           </div>
         );
       
@@ -40,7 +39,7 @@ export default function CustomerListTable({columns, rows}) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No Incomes added yet."} items={rows}>
+      <TableBody  emptyContent={"No Incomes added yet."} items={rows}>
         {(item) => (
           <TableRow key={item._id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

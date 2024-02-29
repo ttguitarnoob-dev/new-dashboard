@@ -19,6 +19,7 @@ import NewCustomer from './Components/Pages/Tombstone Stuff/NewCustomer';
 import Budget from './Components/Pages/Budgety Thing/Budget';
 import ViewBudget from './Components/Pages/Budgety Thing/ViewBudget';
 import NewBudget from './Components/Pages/Budgety Thing/NewBudget';
+import CustomerDetails from './Components/Pages/Tombstone Stuff/CustomerDetails';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/tombstone' element={<TombstoneStuff />} />
           <Route path='/tombstone/inquiries' element={<TombstoneInquiries />} />
           <Route path='/tombstone/customers' element={<Customers />} />
+          <Route path='/tombstone/customers/:id' element={<CustomerDetails />} />
           <Route path='/tombstone/customers/new' element={<NewCustomer />} />
           <Route path='/academy' element={<Academy />} />
           <Route path='/academy/journal' element={<SchoolJournal />} />

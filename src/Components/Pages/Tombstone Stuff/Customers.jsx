@@ -38,22 +38,25 @@ export default function Customers() {
         )
     }
 
-    return(
+    return (
         <>
-        <section>
-            <h1 className="page-title">Tombstone Customers</h1>
-            <Button onClick={() => navigate("/tombstone/customers/new")} >
-                New Customer
-            </Button>
-            <CustomerListTable columns={customersColumns} rows={customers}  />
-        {/* {customers && customers.map((oneCustomer) => (
+            <section>
+                <div className="p-4">
+                    <h1 className="page-title">Tombstone Customers</h1>
+                    <Button className="mb-10" onClick={() => navigate("/tombstone/customers/new")} >
+                        New Customer
+                    </Button>
+                    <Button className="ml-1 mb-10">Back To Tombstone Stuff</Button>
+                </div>
+                <CustomerListTable columns={customersColumns} rows={customers} />
+                {/* {customers && customers.map((oneCustomer) => (
             <>
             <section>
                 {oneCustomer.name}
             </section>
             </>
         ))} */}
-        </section>
+            </section>
         </>
     )
 }
