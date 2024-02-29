@@ -10,7 +10,6 @@ export default function Customers() {
 
     async function handleFetch() {
         const URL = `https://api.ttguitarnoob.cloud/customers`
-        // const URL = `http://localhost:8000/budgets/${id.id}`
         const options = {
             method: "GET"
         }
@@ -18,7 +17,6 @@ export default function Customers() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log('data', data)
             setCustomers(data)
         } catch (err) {
             console.log("shit happened when fetching that", err)
@@ -30,6 +28,7 @@ export default function Customers() {
         handleFetch()
     }, [])
 
+    //Loading message
     if (!customers) {
         return (
             <section>
@@ -41,21 +40,17 @@ export default function Customers() {
     return (
         <>
             <section>
-                <div className="p-4">
+                <div className="p-2">
                     <h1 className="page-title">Tombstone Customers</h1>
                     <Button className="mb-10" onClick={() => navigate("/tombstone/customers/new")} >
                         New Customer
                     </Button>
-                    <Button className="ml-1 mb-10">Back To Tombstone Stuff</Button>
+                    <Button onClick={() => navigate('/tombstone')} className="ml-2 mb-10">
+                        Back To Tombstone Stuff
+                    </Button>
                 </div>
                 <CustomerListTable columns={customersColumns} rows={customers} />
-                {/* {customers && customers.map((oneCustomer) => (
-            <>
-            <section>
-                {oneCustomer.name}
-            </section>
-            </>
-        ))} */}
+
             </section>
         </>
     )
