@@ -81,7 +81,7 @@ export default function ModifyBudgetModal({ id, data }) {
             <section>
                 <h1 className="text-2xl">Modify {allData.allData.bills[id].billName}</h1>
                 <div className="flex">
-                    <Button startContent={<DollarIcon />} className="mt-10" onClick={payBill}>Update Paid Status</Button>
+                    <Button startContent={<DollarIcon />} className="mt-10" onClick={payBill}>Update Paid</Button>
                     <Button startContent={<DollarIcon />} className="ml-2 mt-10" onClick={handleEdit}>Edit {allData.allData.bills[id].billName}</Button>
                 </div>
             </section>
