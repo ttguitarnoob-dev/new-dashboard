@@ -8,7 +8,8 @@ export default function ModifyBudgetModal({ id, data }) {
     const [allData, setAllData] = useState()
     const URL = `https://api.ttguitarnoob.cloud/budgets/${pageID.id}`
     const unpaidURL = `https://api.ttguitarnoob.cloud/budgets/update-unpaid/${pageID.id}`
-    const putURL = `https://api.ttguitarnoob.cloud/budgets/general-update/${pageID.id}`
+    const putURL = `https://api.ttguitarnoob.cloud/budgets/edit-expense/${pageID.id}`
+    // const putURL = `http://localhost:8000/budgets/edit-expense/${pageID.id}`
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [editChanges, setEditChanges] = useState({})
 
@@ -99,7 +100,11 @@ export default function ModifyBudgetModal({ id, data }) {
         return (
             <>
                 <section>
-                    <h1 className="text-2xl">Loading Data...</h1>
+                <h1 className="text-2xl">Modify This Expense</h1>
+                <div className="flex">
+                    <Button startContent={<DollarIcon />} className="mt-10">Update Paid</Button>
+                    <Button startContent={<DollarIcon />} className="ml-2 mt-10">Edit This Bill</Button>
+                </div>
                 </section>
             </>
         )
