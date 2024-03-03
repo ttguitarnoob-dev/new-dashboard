@@ -26,7 +26,7 @@ export default function CustomerDetails() {
     }
 
     //Get Services Data
-    async function fetchServices(){
+    async function fetchServices() {
         const URL = "https://api.ttguitarnoob.cloud/prices"
         const options = {
             method: "GET"
@@ -37,7 +37,7 @@ export default function CustomerDetails() {
             const data = await response.json()
             console.log('services data', data)
             setServices(data)
-        } catch(err) {
+        } catch (err) {
             console.log('the world ended when fetching services', err)
         }
     }
@@ -48,12 +48,12 @@ export default function CustomerDetails() {
     }
 
     //Form Handling
-    function handleChange(e){
+    function handleChange(e) {
         console.log('changed', e.target.value)
     }
 
     //Open add job modal and fetch services data
-    function addJob(){
+    function addJob() {
         console.log('adding job')
         fetchServices()
 
@@ -89,11 +89,11 @@ export default function CustomerDetails() {
                 <div className="text-section">
                     <p>{data.customerNotes}</p>
                 </div>
-                <section>
-                    <Button onClick={addJob}>Add Job</Button>
+                <section className="text-4xl mt-10 mb-4">
                     <h2>Jobs</h2>
-                    <JobsTable columns={jobsColumns} rows={data.jobs} />
                 </section>
+                <JobsTable columns={jobsColumns} rows={data.jobs} />
+                <Button className="m-4" onClick={addJob}>Add Job</Button>
                 <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
                     <ModalContent>
                         {(onClose) => (
@@ -137,12 +137,12 @@ export default function CustomerDetails() {
                                     </div>
                                     <div>
                                         <CheckboxGroup
-                                        label="Select Services"
+                                            label="Select Services"
                                         >
 
-                                        {services && services.map((oneService, index) => (
-                                            <Checkbox key={oneService._id} value={index}>{oneService.name}</Checkbox>
-                                        ))}
+                                            {services && services.map((oneService, index) => (
+                                                <Checkbox key={oneService._id} value={index}>{oneService.name}</Checkbox>
+                                            ))}
                                         </CheckboxGroup>
 
                                     </div>
