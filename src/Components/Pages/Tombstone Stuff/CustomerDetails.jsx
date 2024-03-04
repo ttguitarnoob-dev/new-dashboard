@@ -30,7 +30,8 @@ export default function CustomerDetails() {
 
     //Put fetch
     async function updateCustomerData(){
-        const URL = `http://localhost:8000/customers/${id}`
+        const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
+        // const URL = `http://localhost:8000/customers/${id}`
         const options = {
             method: "PUT",
             body: JSON.stringify(data),
@@ -44,6 +45,7 @@ export default function CustomerDetails() {
             const response = await fetch(URL, options)
             const data = response.json()
             console.log("snt it bro", data)
+            onClose()
         } catch(err) {
             console.log("I can't believe you tried to to a put request man", err)
         }
