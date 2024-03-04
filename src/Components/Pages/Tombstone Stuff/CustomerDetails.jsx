@@ -204,6 +204,17 @@ export default function CustomerDetails() {
                                                 <Checkbox onChange={handleChecks} key={oneService._id} value={index}>{oneService.name}</Checkbox>
                                             ))}
                                         </CheckboxGroup>
+                                        <div className="mt-5">
+                                        <Input
+                                            label="Add Custom Price"
+                                            type="number"
+                                            onChange={handleChange}
+                                            name="customPrice"
+                                            id="customPrice"
+                                            color="secondary"
+
+                                        />
+                                    </div>
 
                                     </div>
                                 </ModalBody>
