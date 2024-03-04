@@ -21,9 +21,8 @@ export default function JobsTable({columns, rows}) {
       case "date":
         return (
           <div className="flex flex-col">
-            {/* <a href={`tel:${cellValue}`}><p className="text-bold text-sm capitalize">{cellValue}</p></a>
-            <a href={`mailto:${smell.email}`}><p className="text-bold text-sm capitalize text-default-400">{smell.email}</p></a> */}
-            <p>{cellValue}</p>
+            
+            <p>{new Date(cellValue).toLocaleDateString()}</p>
           </div>
         );
       

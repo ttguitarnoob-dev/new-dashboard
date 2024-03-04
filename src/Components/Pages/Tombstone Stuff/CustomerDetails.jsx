@@ -24,7 +24,6 @@ export default function CustomerDetails() {
 
         const response = await fetch(getURL, getOptions)
         const data = await response.json()
-        console.log('thedata', data)
         setData(data)
     }
 
@@ -44,7 +43,6 @@ export default function CustomerDetails() {
         try {
             const response = await fetch(URL, options)
             const data = response.json()
-            console.log("snt it bro", data)
             onClose()
         } catch(err) {
             console.log("I can't believe you tried to to a put request man", err)
@@ -61,7 +59,6 @@ export default function CustomerDetails() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            console.log('services data', data)
             setServices(data)
         } catch (err) {
             console.log('the world ended when fetching services', err)
@@ -76,14 +73,11 @@ export default function CustomerDetails() {
     //Form Handling
     function handleChange(e) {
         const edited = e.target.name
-        console.log('thename', edited)
         initialInput[edited] = e.target.value
-        console.log('changed', initialInput)
     }
 
     //State for checkboxes in the new job form
     function handleChecks(e){
-        console.log('checked a thin', initialInput)
         
         const checkedIndex = e.target.value
         if (checks.includes(checkedIndex)){
@@ -95,14 +89,12 @@ export default function CustomerDetails() {
         } else {
             // setChecks([...checks, checkedIndex])
             checks.push(checkedIndex)
-            console.log('the else with setstate', initialInput)
         }
         
     }
 
     //Clear checked state if form is closed
     function cancelForm(){
-        console.log('full list?', checks)
         checks = []
         onClose()
     }
@@ -115,14 +107,12 @@ export default function CustomerDetails() {
             totalPrice += services[oneCheck].price
         })
         initialInput.totalPrice = totalPrice
-        console.log('Now we can puttt this', initialInput)
         data.jobs.push(initialInput)
         updateCustomerData()
     }
 
     //Open add job modal and fetch services data
     function addJob() {
-        console.log('adding job')
         fetchServices()
 
         onOpen()
