@@ -8,8 +8,11 @@ export default function CustomerDetails() {
     const { id } = useParams()
     const [data, setData] = useState()
     const [services, setServices] = useState()
+    // const [checks, setChecks] = useState([])
+    let checks = []
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    let initialInput = {services: [], totalPrice: 0}
 
 
     //Initial Customer Data Fetch
@@ -49,7 +52,47 @@ export default function CustomerDetails() {
 
     //Form Handling
     function handleChange(e) {
-        console.log('changed', e.target.value)
+        const edited = e.target.name
+        console.log('thename', edited)
+        initialInput[edited] = e.target.value
+        console.log('changed', initialInput)
+    }
+
+    //State for checkboxes in the new job form
+    function handleChecks(e){
+        console.log('checked a thin', initialInput)
+        
+        const checkedIndex = e.target.value
+        if (checks.includes(checkedIndex)){
+            const index = checks.indexOf(checkedIndex)
+            if (index > -1){
+                checks.splice(index, 1)
+            }
+
+        } else {
+            // setChecks([...checks, checkedIndex])
+            checks.push(checkedIndex)
+            console.log('the else with setstate', initialInput)
+        }
+        
+    }
+
+    //Clear checked state if form is closed
+    function cancelForm(){
+        console.log('full list?', checks)
+        checks = []
+        onClose()
+    }
+
+    //Add prices of checked items in the form
+    function addPrices(){
+        let totalPrice = 0
+        checks.map((oneCheck) => {
+            initialInput.services.push({serviceName: services[oneCheck].name, price: services[oneCheck].price})
+            totalPrice += services[oneCheck].price
+        })
+        initialInput.totalPrice = totalPrice
+        console.log('Now we can puttt this', initialInput)
     }
 
     //Open add job modal and fetch services data
@@ -141,17 +184,17 @@ export default function CustomerDetails() {
                                         >
 
                                             {services && services.map((oneService, index) => (
-                                                <Checkbox key={oneService._id} value={index}>{oneService.name}</Checkbox>
+                                                <Checkbox onChange={handleChecks} key={oneService._id} value={index}>{oneService.name}</Checkbox>
                                             ))}
                                         </CheckboxGroup>
 
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="secondary" onPress={onClose}>
+                                    <Button color="secondary" onPress={addPrices}>
                                         Submit
                                     </Button>
-                                    <Button color="danger" variant="light" onPress={onClose}>
+                                    <Button color="danger" variant="light" onPress={cancelForm}>
                                         Close
                                     </Button>
 
