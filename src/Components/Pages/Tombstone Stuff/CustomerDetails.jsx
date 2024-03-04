@@ -28,6 +28,27 @@ export default function CustomerDetails() {
         setData(data)
     }
 
+    //Put fetch
+    async function updateCustomerData(){
+        const URL = `http://localhost:8000/customers/${id}`
+        const options = {
+            method: "PUT",
+            body: JSON.stringify(data),
+            mode: "cors",
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+
+        try {
+            const response = await fetch(URL, options)
+            const data = response.json()
+            console.log("snt it bro", data)
+        } catch(err) {
+            console.log("I can't believe you tried to to a put request man", err)
+        }
+    }
+
     //Get Services Data
     async function fetchServices() {
         const URL = "https://api.ttguitarnoob.cloud/prices"
@@ -93,7 +114,8 @@ export default function CustomerDetails() {
         })
         initialInput.totalPrice = totalPrice
         console.log('Now we can puttt this', initialInput)
-        alert(`can puttt ${initialInput.totalPrice}`)
+        data.jobs.push(initialInput)
+        updateCustomerData()
     }
 
     //Open add job modal and fetch services data
@@ -104,11 +126,12 @@ export default function CustomerDetails() {
         onOpen()
     }
 
-
+    //Initial data fetch call
     useEffect(() => {
         handleFetch()
     }, [])
 
+    //Loading screen
     if (!data) {
         return (
             <>
