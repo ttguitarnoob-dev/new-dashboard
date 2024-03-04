@@ -44,6 +44,7 @@ export default function CustomerDetails() {
             const response = await fetch(URL, options)
             const data = response.json()
             onClose()
+            return data
         } catch(err) {
             console.log("I can't believe you tried to to a put request man", err)
         }
