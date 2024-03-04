@@ -93,6 +93,7 @@ export default function CustomerDetails() {
         })
         initialInput.totalPrice = totalPrice
         console.log('Now we can puttt this', initialInput)
+        alert(`can puttt ${initialInput.totalPrice}`)
     }
 
     //Open add job modal and fetch services data
