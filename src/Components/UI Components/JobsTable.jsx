@@ -32,7 +32,12 @@ export default function JobsTable({columns, rows}) {
   }, []);
 
   return (
-  <Table isStriped aria-label="View Incomes Table">
+  <Table 
+  isStriped 
+  aria-label="View Incomes Table"
+  selectionBehavior="toggle"
+  onRowAction={(index) => console.log('clicccked', index)}
+  >
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
@@ -42,6 +47,7 @@ export default function JobsTable({columns, rows}) {
       </TableHeader>
       <TableBody  emptyContent={"No jobs for this customer yet."} items={rows}>
         {(item) => (
+          
           
           <TableRow key={`${item.location}${item.date}`}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

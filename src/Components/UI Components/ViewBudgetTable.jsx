@@ -61,6 +61,7 @@ export default function ViewBudgetTable({ columns, rows }) {
 
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  
   function openModal(clickedItem, component) {
     setModal(component)
     onOpen()
