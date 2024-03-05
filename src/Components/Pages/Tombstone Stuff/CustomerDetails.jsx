@@ -12,7 +12,7 @@ export default function CustomerDetails() {
     let checks = []
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
-    let initialInput = {services: [], totalPrice: 0}
+    let initialInput = { services: [], totalPrice: 0 }
 
 
     //Initial Customer Data Fetch
@@ -28,7 +28,7 @@ export default function CustomerDetails() {
     }
 
     //Put fetch
-    async function updateCustomerData(){
+    async function updateCustomerData() {
         const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
         // const URL = `http://localhost:8000/customers/${id}`
         const options = {
@@ -42,10 +42,10 @@ export default function CustomerDetails() {
 
         try {
             const response = await fetch(URL, options)
-            const data = response.json()
+            const data = await response.json()
             onClose()
             return data
-        } catch(err) {
+        } catch (err) {
             console.log("I can't believe you tried to to a put request man", err)
         }
     }
@@ -75,15 +75,16 @@ export default function CustomerDetails() {
     function handleChange(e) {
         const edited = e.target.name
         initialInput[edited] = e.target.value
+        console.log('edited', initialInput)
     }
 
     //State for checkboxes in the new job form
-    function handleChecks(e){
-        
+    function handleChecks(e) {
+
         const checkedIndex = e.target.value
-        if (checks.includes(checkedIndex)){
+        if (checks.includes(checkedIndex)) {
             const index = checks.indexOf(checkedIndex)
-            if (index > -1){
+            if (index > -1) {
                 checks.splice(index, 1)
             }
 
@@ -91,23 +92,27 @@ export default function CustomerDetails() {
             // setChecks([...checks, checkedIndex])
             checks.push(checkedIndex)
         }
-        
+
     }
 
     //Clear checked state if form is closed
-    function cancelForm(){
+    function cancelForm() {
         checks = []
         onClose()
     }
 
     //Add prices of checked items in the form
-    function addPrices(){
-        let totalPrice = 0
-        checks.map((oneCheck) => {
-            initialInput.services.push({serviceName: services[oneCheck].name, price: services[oneCheck].price})
-            totalPrice += services[oneCheck].price
-        })
-        initialInput.totalPrice = totalPrice
+    function addPrices() {
+        if (initialInput.totalPrice > 0) {
+            initialInput.services.push({ serviceName: "Custom Cleaning Job", price: initialInput.totalPrice })
+        } else {
+            let totalPrice = 0
+            checks.map((oneCheck) => {
+                initialInput.services.push({ serviceName: services[oneCheck].name, price: services[oneCheck].price })
+                totalPrice += services[oneCheck].price
+            })
+            initialInput.totalPrice = totalPrice
+        }
         data.jobs.push(initialInput)
         updateCustomerData()
     }
@@ -205,16 +210,16 @@ export default function CustomerDetails() {
                                             ))}
                                         </CheckboxGroup>
                                         <div className="mt-5">
-                                        <Input
-                                            label="Add Custom Price"
-                                            type="number"
-                                            onChange={handleChange}
-                                            name="customPrice"
-                                            id="customPrice"
-                                            color="secondary"
+                                            <Input
+                                                label="Add Custom Price"
+                                                type="number"
+                                                onChange={handleChange}
+                                                name="totalPrice"
+                                                id="totalPrice"
+                                                color="secondary"
 
-                                        />
-                                    </div>
+                                            />
+                                        </div>
 
                                     </div>
                                 </ModalBody>

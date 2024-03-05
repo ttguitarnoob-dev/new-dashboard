@@ -42,7 +42,8 @@ export default function JobsTable({columns, rows}) {
       </TableHeader>
       <TableBody  emptyContent={"No jobs for this customer yet."} items={rows}>
         {(item) => (
-          <TableRow key={item.date}>
+          
+          <TableRow key={`${item.location}${item.date}`}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
