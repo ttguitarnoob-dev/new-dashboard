@@ -10,22 +10,24 @@ export default function JobsTable({ columns, rows }) {
   //Modal Things
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  function openModal(component) {
-    setModal(component)
-    onOpen()
-  }
+  // function openModal(component) {
+  //   setModal(component)
+  //   onOpen()
+  // }
+
   //Modal Component
-  function EditJobsModal({ clickedItem }) {
-    console.log('job', rows[clickedItem])
-    return (
-      <>
-        <section>
-          <h1>{rows[clickedItem].location}</h1>
-          <p>here is the index: {clickedItem}</p>
-        </section>
-      </>
-    )
-  }
+  // function EditJobsModal({ clickedItem }) {
+  //   console.log('job', rows[clickedItem])
+  //   return (
+  //     <>
+  //       <section>
+  //         <h1>{rows[clickedItem].location}</h1>
+  //         <p>here is the index: {clickedItem}</p>
+  //       </section>
+  //     </>
+  //   )
+  // }
+
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
 
@@ -49,7 +51,7 @@ export default function JobsTable({ columns, rows }) {
         return (
           <div className="flex flex-col">
 
-            <Popover placement="left" showArrow={true}>
+            <Popover variant="dark" placement="left" showArrow={true}>
               <PopoverTrigger>
                 <Button isIconOnly size="sm" variant="dark">
                   <VerticalDotsIcon className="text-default-300"/>
@@ -57,9 +59,9 @@ export default function JobsTable({ columns, rows }) {
               </PopoverTrigger>
               <PopoverContent>
                 <div className="px-1 py-2">
-                  <Button onPress={() => console.log('hello number', smell.key)} className="mr-2">Close Job</Button>
+                  <Button color="secondary" onPress={() => console.log('hello number', smell.key)} className="mr-2">Close Job</Button>
                   <Button className="mr-2">Edit Job</Button>
-                  <Button>Delete Job</Button>
+                  <Button color="danger">Delete Job</Button>
                 </div>
               </PopoverContent>
             </Popover>
@@ -79,8 +81,6 @@ export default function JobsTable({ columns, rows }) {
         <Table
           isStriped
           aria-label="View Incomes Table"
-          selectionBehavior="toggle"
-          onRowAction={(index) => openModal(<EditJobsModal clickedItem={index} />)}
         >
           <TableHeader columns={columns}>
             {(column) => (
@@ -99,7 +99,7 @@ export default function JobsTable({ columns, rows }) {
             )}
           </TableBody>
         </Table>
-        <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <Modal variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
           <ModalContent>
             {(onClose) => (
               <>
