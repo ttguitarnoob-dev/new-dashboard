@@ -6,8 +6,9 @@ import JobsTable from "../../UI Components/JobsTable"
 
 export default function CustomerDetails() {
     const { id } = useParams()
-    const [data, setData] = useState()
+    const [customer, setCustomer] = useState()
     const [services, setServices] = useState()
+    const [jobs, setJobs] = useState()
     // const [checks, setChecks] = useState([])
     let checks = []
     const navigate = useNavigate()
@@ -17,6 +18,7 @@ export default function CustomerDetails() {
 
     //Initial Customer Data Fetch
     async function handleFetch() {
+        // const getURL = `http://localhost:8000/customers/${id}`
         const getURL = `https://api.ttguitarnoob.cloud/customers/${id}`
         const getOptions = {
             method: "GET"
@@ -24,7 +26,9 @@ export default function CustomerDetails() {
 
         const response = await fetch(getURL, getOptions)
         const data = await response.json()
-        setData(data)
+        console.log('thedata', data)
+        setCustomer(data.oneCustomer)
+        setJobs(data.jobs)
     }
 
     //Put fetch
@@ -33,7 +37,7 @@ export default function CustomerDetails() {
         // const URL = `http://localhost:8000/customers/${id}`
         const options = {
             method: "PUT",
-            body: JSON.stringify(data),
+            body: JSON.stringify(customer),
             mode: "cors",
             headers: {
                 "Content-type": "application/json"
@@ -43,7 +47,8 @@ export default function CustomerDetails() {
         try {
             const response = await fetch(URL, options)
             const data = await response.json()
-            onClose()
+            // onClose()
+            window.location.reload()
             return data
         } catch (err) {
             console.log("I can't believe you tried to to a put request man", err)
@@ -113,7 +118,8 @@ export default function CustomerDetails() {
             })
             initialInput.totalPrice = totalPrice
         }
-        data.jobs.push(initialInput)
+        customer.jobs.push(initialInput)
+        // setJobs([...jobs, initialInput])
         updateCustomerData()
     }
 
@@ -130,7 +136,7 @@ export default function CustomerDetails() {
     }, [])
 
     //Loading screen
-    if (!data) {
+    if (!customer) {
         return (
             <>
                 <section>
@@ -146,25 +152,25 @@ export default function CustomerDetails() {
             <section>
                 <Button onClick={() => handleClick('/tombstone/customers')}>Back To All Customers</Button>
                 <div className="customer-info">
-                    <h1>{data.name}</h1>
-                    <a href={`tel:${data.phone}`}><p>{data.phone}</p></a>
-                    <a href={`mailto:${data.email}`}><p>{data.email}</p></a>
+                    <h1>{customer.name}</h1>
+                    <a href={`tel:${customer.phone}`}><p>{customer.phone}</p></a>
+                    <a href={`mailto:${customer.email}`}><p>{customer.email}</p></a>
                 </div>
                 <hr></hr>
                 <div className="text-section">
-                    <p>{data.customerNotes}</p>
+                    <p>{customer.customerNotes}</p>
                 </div>
                 <section className="text-4xl mt-10 mb-4">
                     <h2>Jobs</h2>
                 </section>
-                <JobsTable columns={jobsColumns} rows={data.jobs} />
+                <JobsTable columns={jobsColumns} rows={jobs} />
                 <Button className="m-4" onClick={addJob}>Add Job</Button>
                 <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
                     <ModalContent>
                         {(onClose) => (
                             <>
                                 <ModalHeader>
-                                    <h2>Add Job For {data.name}</h2>
+                                    <h2>Add Job For {customer.name}</h2>
                                 </ModalHeader>
                                 <ModalBody>
                                     <div className="mb-5">
