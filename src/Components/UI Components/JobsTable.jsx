@@ -1,6 +1,7 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Button } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import { useCallback, useState } from "react";
+import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 
 
 
@@ -9,19 +10,19 @@ export default function JobsTable({ columns, rows }) {
   //Modal Things
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  function openModal(component){
+  function openModal(component) {
     setModal(component)
     onOpen()
   }
   //Modal Component
-  function EditJobsModal({clickedItem}){
+  function EditJobsModal({ clickedItem }) {
     console.log('job', rows[clickedItem])
-    return(
+    return (
       <>
-      <section>
-        <h1>{rows[clickedItem].location}</h1>
-        <p>here is the index: {clickedItem}</p>
-      </section>
+        <section>
+          <h1>{rows[clickedItem].location}</h1>
+          <p>here is the index: {clickedItem}</p>
+        </section>
       </>
     )
   }
@@ -44,13 +45,33 @@ export default function JobsTable({ columns, rows }) {
             <p>{new Date(cellValue).toLocaleDateString()}</p>
           </div>
         );
+      case "actions":
+        return (
+          <div className="flex flex-col">
+
+            <Popover placement="left" showArrow={true}>
+              <PopoverTrigger>
+                <Button isIconOnly size="sm" variant="dark">
+                  <VerticalDotsIcon className="text-default-300"/>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2">
+                  <Button onPress={() => console.log('hello number', smell.key)} className="mr-2">Close Job</Button>
+                  <Button className="mr-2">Edit Job</Button>
+                  <Button>Delete Job</Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+        );
 
       default:
         return cellValue;
     }
   }, []);
 
-  
+
 
   return (
     <>

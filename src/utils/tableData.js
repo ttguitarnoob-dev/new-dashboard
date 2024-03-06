@@ -15,7 +15,8 @@ const customersColumns = [
 ]
 const jobsColumns = [
     { name: "LOCATION", key: "location" },
-    { name: "COMPLETE BY", key: "date" }
+    { name: "COMPLETE BY", key: "date" },
+    { name: "ACTIONS", key: "actions" }
 ]
 
 
