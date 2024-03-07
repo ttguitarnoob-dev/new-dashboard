@@ -7,23 +7,53 @@ import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 
 
 
-export default function JobsTable({ columns, rows, customerID }) {
+export default function JobsTable({ columns, rows, customerID, customerData }) {
   //Modal Things
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const deleteURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
+  const updateURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
+  let data = customerData
+
+  //Fetch Customer Data
 
   //Confirm Delete Job
-  function handleConfirm(index){
-    const youSure = window.confirm('Are you sure you want to delete this job?')
+  function handleConfirm(index) {
+    const youSure = window.confirm(`Are you sure you want to delete the job for ${data.jobs[index].location}?`)
     if (youSure) {
-      handleUpdateCustomer(index)
+      handleDelete(index)
     }
   }
-  //Delete job
-  async function handleUpdateCustomer(index){
 
-    console.log(`deleting job index ${index}`, customerID)
+  //Remove job from array and call update fetch
+  function handleDelete(index) {
+    console.log('removing job', data.jobs[index].location)
+    if (index > -1) {
+      data.jobs.splice(index, 1)
+    }
+    handleUpdateCustomer()
+  }
+
+  //Update Customer
+  async function handleUpdateCustomer() {
+    const options = {
+      method: "PUT",
+      body: JSON.stringify(data),
+      mode: "cors",
+      headers: {
+          "Content-type": "application/json"
+      }
+  }
+
+    console.log(`updating job `, data)
+    try {
+      const response = await fetch(updateURL, options)
+      const updatedItem = await response.json()
+      window.location.reload()
+      return updatedItem
+
+    } catch(err) {
+      console.log('How many times i gotta tell you dont send put reqeusts from the jobs table', err)
+    }
   }
 
   // function openModal(component) {

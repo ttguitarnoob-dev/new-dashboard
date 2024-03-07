@@ -163,7 +163,7 @@ export default function CustomerDetails() {
                 <section className="text-4xl mt-10 mb-4">
                     <h2>Jobs</h2>
                 </section>
-                <JobsTable columns={jobsColumns} rows={jobs} customerID={id} />
+                <JobsTable columns={jobsColumns} rows={jobs} customerID={id} customerData={customer} />
                 <Button className="m-4" onClick={addJob}>Add Job</Button>
                 <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
                     <ModalContent>
