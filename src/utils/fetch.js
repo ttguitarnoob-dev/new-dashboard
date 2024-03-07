@@ -15,6 +15,5 @@ async function handleFetch(url){
 
 }
 
-const fetchResults = handleFetch()
 
 export {handleFetch}

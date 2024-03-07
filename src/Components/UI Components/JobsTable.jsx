@@ -1,6 +1,6 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
-import { useCallback, useState } from "react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
+import { useCallback } from "react";
 import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 
 
@@ -9,8 +9,8 @@ import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 
 export default function JobsTable({ columns, rows, customerID, customerData }) {
   //Modal Things
-  const [modal, setModal] = useState()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const [modal, setModal] = useState()
+  // const { isOpen, onOpen, onClose } = useDisclosure()
   const updateURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
   let data = customerData
 
@@ -145,7 +145,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
             )}
           </TableBody>
         </Table>
-        <Modal variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        {/* <Modal variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
           <ModalContent>
             {(onClose) => (
               <>
@@ -162,7 +162,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
               </>
             )}
           </ModalContent>
-        </Modal>
+        </Modal> */}
       </section>
     </>
   );
