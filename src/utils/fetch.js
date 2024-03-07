@@ -1,4 +1,4 @@
-export async function handleFetch(url){
+async function handleFetch(url){
     try {
         const options = {
             method: "GET"
@@ -6,6 +6,7 @@ export async function handleFetch(url){
 
         const response = await fetch(url, options)
         const results = await response.json()
+        console.log('from the imported function', results)
         return results
 
     } catch (err) {
@@ -13,3 +14,7 @@ export async function handleFetch(url){
     }
 
 }
+
+const fetchResults = handleFetch()
+
+export {handleFetch}

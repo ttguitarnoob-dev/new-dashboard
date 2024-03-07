@@ -6,10 +6,26 @@ import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 
 
 
-export default function JobsTable({ columns, rows }) {
+
+export default function JobsTable({ columns, rows, customerID }) {
   //Modal Things
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const deleteURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
+
+  //Confirm Delete Job
+  function handleConfirm(index){
+    const youSure = window.confirm('Are you sure you want to delete this job?')
+    if (youSure) {
+      handleUpdateCustomer(index)
+    }
+  }
+  //Delete job
+  async function handleUpdateCustomer(index){
+
+    console.log(`deleting job index ${index}`, customerID)
+  }
+
   // function openModal(component) {
   //   setModal(component)
   //   onOpen()
@@ -51,17 +67,17 @@ export default function JobsTable({ columns, rows }) {
         return (
           <div className="flex flex-col">
 
-            <Popover variant="dark" placement="left" showArrow={true}>
+            <Popover variant="dark" placement="top" showArrow={true}>
               <PopoverTrigger>
                 <Button isIconOnly size="sm" variant="dark">
-                  <VerticalDotsIcon className="text-default-300"/>
+                  <VerticalDotsIcon className="text-default-300" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
                 <div className="px-1 py-2">
-                  <Button color="secondary" onPress={() => console.log('hello number', smell.key)} className="mr-2">Close Job</Button>
-                  <Button className="mr-2">Edit Job</Button>
-                  <Button color="danger">Delete Job</Button>
+                  <Button size="sm" color="secondary" onPress={() => console.log('hello number', smell.key)} className="mr-2">Close Job</Button>
+                  <Button size="sm" className="mr-2">Edit Job</Button>
+                  <Button size="sm" color="danger" onPress={() => handleConfirm(smell.key)}>Delete Job</Button>
                 </div>
               </PopoverContent>
             </Popover>
