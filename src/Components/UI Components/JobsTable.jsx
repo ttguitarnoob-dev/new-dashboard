@@ -2,6 +2,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Popover, PopoverTrigger, PopoverContent, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter } from "@nextui-org/react";
 import { useCallback, useState } from "react";
 import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
+import CloseJob from "../Pages/Tombstone Stuff/CloseJob";
 
 
 
@@ -10,6 +11,7 @@ import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 export default function JobsTable({ columns, rows, customerID, customerData }) {
   //Modal Things
   const [modal, setModal] = useState()
+  const [popoverOpen, setPopoverOpen] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const updateURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
   let data = customerData
@@ -58,6 +60,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
 
   function openModal(component) {
     setModal(component)
+    // setPopoverOpen(false)
     onOpen()
   }
 
@@ -74,6 +77,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
     )
   }
 
+  //Render dynamic table
   const renderCell = useCallback((smell, columnKey) => {
     const cellValue = smell[columnKey];
 
@@ -97,7 +101,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
         return (
           <div className="flex flex-col">
 
-            <Popover variant="dark" placement="top" showArrow={true}>
+            <Popover variant="dark" placement="top">
               <PopoverTrigger>
                 <Button isIconOnly size="sm" variant="dark">
                   <VerticalDotsIcon className="text-default-300" />
@@ -105,7 +109,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
               </PopoverTrigger>
               <PopoverContent>
                 <div className="px-1 py-2">
-                  <Button size="sm" color="secondary" onPress={onOpen} className="mr-2">Close Job</Button>
+                  <Button size="sm" color="secondary" onPress={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)} className="mr-2">Close Job</Button>
                   <Button size="sm" className="mr-2">Edit Details</Button>
                   <Button size="sm" color="danger" onPress={() => handleConfirm(smell.key)}>Delete Job</Button>
                 </div>
@@ -145,15 +149,13 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
             )}
           </TableBody>
         </Table>
-        <Modal variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <Modal placement="top" variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
           <ModalContent>
             {(onClose) => (
               <>
 
                 <ModalBody>
-                  <section className="invoice-container">
-                    <h2>Close</h2>
-                  </section>
+                  {modal}
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="light" onPress={onClose}>

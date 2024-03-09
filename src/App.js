@@ -20,6 +20,7 @@ import Budget from './Components/Pages/Budgety Thing/Budget';
 import ViewBudget from './Components/Pages/Budgety Thing/ViewBudget';
 import NewBudget from './Components/Pages/Budgety Thing/NewBudget';
 import CustomerDetails from './Components/Pages/Tombstone Stuff/CustomerDetails';
+import CloseJob from './Components/Pages/Tombstone Stuff/CloseJob';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path='/academy/journal/:id' element={<JournalDetails />} />
           <Route path='/academy/quizzes' element={<Quizzes />} />
           <Route path='/academy/quizzer' element={<Quizzer />} />
+          <Route path='/pooo' element={<CloseJob />} />
         </Routes>
       </NextUIProvider>
     </div>
