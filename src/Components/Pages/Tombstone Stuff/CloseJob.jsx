@@ -16,8 +16,8 @@ export default function CloseJob({ customerData, jobIndex }) {
     let isChecked = [false, false, false]
     let hasInvoice = checkForInvoice()
     const customerID = customerData._id
-    const invoiceURL = `http://localhost:8000/invoices`
-    const customerURL = `http://localhost:8000/customers/invoice-id/${customerID}`
+    const invoiceURL = `https://api.ttguitarnoob.cloud/invoices`
+    const customerURL = `https://api.ttguitarnoob.cloud/customers/invoice-id/${customerID}`
     const invoiceData = {
         client: customerData.name,
         phone: customerData.phone,
@@ -86,6 +86,8 @@ export default function CloseJob({ customerData, jobIndex }) {
             console.log('sending put request to ', customerURL)
             const putRequest = await fetch(customerURL, updateOptions)
             const putData = await putRequest.json()
+            window.location.reload()
+            return putData
 
 
         } catch (err) {
@@ -135,7 +137,7 @@ export default function CloseJob({ customerData, jobIndex }) {
             <section>
                 <CheckboxGroup className="mt-5" label="Select An Action">
                     {!hasInvoice && <Checkbox value={'invoice'} onChange={() => checkTheChecks(0)}>Generate Invoice</Checkbox>}
-                    {hasInvoice && <a style={{ textDecoration: 'underline' }} href={`https://majestic-monuments.ttguitarnoob.cloud/invoices/345345`} target="_blank">Link to Invoice</a>}
+                    {hasInvoice && <a style={{ textDecoration: 'underline' }} href={`https://majestic-monuments.ttguitarnoob.cloud/invoices/${customerData.jobs[jobIndex].invoiceID}`} target="_blank">Link to Invoice</a>}
                     <Checkbox value={'email'} onChange={() => checkTheChecks(1)}>Send Invoice Email</Checkbox>
                     <Checkbox value={'paid'} onChange={() => checkTheChecks(2)}>Update Paid</Checkbox>
                 </CheckboxGroup>
