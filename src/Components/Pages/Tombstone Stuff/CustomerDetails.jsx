@@ -33,8 +33,8 @@ export default function CustomerDetails() {
 
     //Put fetch
     async function updateCustomerData() {
-        const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
-        // const URL = `http://localhost:8000/customers/${id}`
+        // const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
+        const URL = `http://localhost:8000/customers/${id}`
         const options = {
             method: "PUT",
             body: JSON.stringify(customer),

@@ -60,22 +60,21 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
 
   function openModal(component) {
     setModal(component)
-    // setPopoverOpen(false)
     onOpen()
   }
 
   // Modal Component
-  function EditJobsModal({ clickedItem }) {
-    console.log('job', rows[clickedItem])
-    return (
-      <>
-        <section>
-          <h1>{rows[clickedItem].location}</h1>
-          <p>here is the index: {clickedItem}</p>
-        </section>
-      </>
-    )
-  }
+  // function EditJobsModal({ clickedItem }) {
+  //   console.log('job', rows[clickedItem])
+  //   return (
+  //     <>
+  //       <section>
+  //         <h1>{rows[clickedItem].location}</h1>
+  //         <p>here is the index: {clickedItem}</p>
+  //       </section>
+  //     </>
+  //   )
+  // }
 
   //Render dynamic table
   const renderCell = useCallback((smell, columnKey) => {

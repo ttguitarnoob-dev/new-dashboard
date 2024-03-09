@@ -9,8 +9,25 @@
 
 import { Button, Checkbox, CheckboxGroup } from "@nextui-org/react"
 
-export default function CloseJob({customerData, jobIndex}) {
+export default function CloseJob({ customerData, jobIndex }) {
+    
     let isChecked = [false, false, false]
+    const invoiceURL = `http://localhost:8000/invoices`
+    const customerURL = `http://localhost:8000/customers${customerData._id}`
+    const invoiceData = {
+        client: customerData.name,
+        phone: customerData.phone,
+        email: customerData.email,
+        date: customerData.jobs[jobIndex].date,
+        clientId: customerData._id,
+        jobIndex: jobIndex,
+        job: customerData.jobs[jobIndex].location,
+        jobDetails: customerData.jobs[jobIndex].jobNotes,
+        services: customerData.jobs[jobIndex].services,
+        paid: false,
+        total: customerData.jobs[jobIndex].totalPrice
+
+    }
 
     function checkTheChecks(index) {
         if (!isChecked[index]) {
@@ -19,15 +36,33 @@ export default function CloseJob({customerData, jobIndex}) {
             isChecked[index] = false
         }
     }
+    console.log('customerdata', invoiceData)
 
     //Generate invoice, linked to isChecked[0]
     async function generateInvoice() {
         console.log('yo im generating an invoice now', customerData._id, jobIndex)
+        const newInvoiceOptions = {
+            method: "POST",
+            body: JSON.stringify(invoiceData),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+        try {
+            const response = await fetch(invoiceURL, newInvoiceOptions)
+            const data = await response.json()
+            const invoiceId = data.invoiceId
+            console.log('the data', data.invoiceId)
+            console.log(`https://majestic-monuments.ttguitarnoob.cloud/invoice/${invoiceId}`)
+
+        } catch (err) {
+            console.log('ya you really went too far this time', err)
+        }
     }
 
     //Send Email, linked to isChecked[1]
     async function sendEmail() {
-        console.log('sending email now')
+        console.log('sending email now', customerData)
     }
 
     //Update paid, linked to isChecked[2]
@@ -37,13 +72,13 @@ export default function CloseJob({customerData, jobIndex}) {
 
     //Chose which functions to run when submit button is clicked, based on which checks were checkededed
     function handleSubmit() {
-        
+
         //Putting paid first so that all the others can have the correct paid status
         if (isChecked[2]) {
             updatePaid()
         }
 
-        if (isChecked[0]){
+        if (isChecked[0]) {
             generateInvoice()
         }
 
@@ -56,16 +91,16 @@ export default function CloseJob({customerData, jobIndex}) {
 
     }
 
-    return(
+    return (
         <>
-        <section>
-            <CheckboxGroup label="Select An Action">
-                <Checkbox value={'invoice'} onChange={() => checkTheChecks(0)}>Generate Invoice</Checkbox>
-                <Checkbox value={'email'} onChange={() => checkTheChecks(1)}>Send Invoice Email</Checkbox>
-                <Checkbox value={'paid'} onChange={() => checkTheChecks(2)}>Update Paid</Checkbox>
-            </CheckboxGroup>
-            <Button onClick={handleSubmit}>Submit</Button>
-        </section>
+            <section>
+                <CheckboxGroup label="Select An Action">
+                    <Checkbox value={'invoice'} onChange={() => checkTheChecks(0)}>Generate Invoice</Checkbox>
+                    <Checkbox value={'email'} onChange={() => checkTheChecks(1)}>Send Invoice Email</Checkbox>
+                    <Checkbox value={'paid'} onChange={() => checkTheChecks(2)}>Update Paid</Checkbox>
+                </CheckboxGroup>
+                <Button onClick={handleSubmit}>Submit</Button>
+            </section>
         </>
     )
 }
