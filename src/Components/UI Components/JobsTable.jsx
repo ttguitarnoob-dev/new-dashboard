@@ -1,8 +1,11 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Popover, PopoverTrigger, PopoverContent, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Popover, PopoverTrigger, PopoverContent, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, DropdownSection } from "@nextui-org/react";
 import { useCallback, useState } from "react";
 import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 import CloseJob from "../Pages/Tombstone Stuff/CloseJob";
+import { EditIcon } from "./SVG Icons/EditIcon";
+import { DeleteIcon } from "./SVG Icons/DeleteIcon";
+import { CheckIcon } from "./SVG Icons/CheckIcon";
 
 
 
@@ -42,9 +45,9 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
       body: JSON.stringify(data),
       mode: "cors",
       headers: {
-          "Content-type": "application/json"
+        "Content-type": "application/json"
       }
-  }
+    }
 
     console.log(`updating job `, data)
     try {
@@ -53,7 +56,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
       window.location.reload()
       return updatedItem
 
-    } catch(err) {
+    } catch (err) {
       console.log('How many times i gotta tell you dont send put reqeusts from the jobs table', err)
     }
   }
@@ -100,20 +103,49 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
         return (
           <div className="flex flex-col">
 
-            <Popover variant="dark" placement="top">
-              <PopoverTrigger>
+            <Dropdown>
+              <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="dark">
                   <VerticalDotsIcon className="text-default-300" />
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <div className="px-1 py-2">
-                  <Button size="sm" color="secondary" onPress={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)} className="mr-2">Close Job</Button>
-                  <Button size="sm" className="mr-2">Edit Details</Button>
-                  <Button size="sm" color="danger" onPress={() => handleConfirm(smell.key)}>Delete Job</Button>
-                </div>
-              </PopoverContent>
-            </Popover>
+
+              </DropdownTrigger>
+              <DropdownMenu variant="faded" aria-label="Actions Dropsdown">
+                <DropdownSection title="Actions" showDivider>
+                  
+                    <DropdownItem
+                      key="close"
+                      description="Options for finishing the job"
+                      startContent={<CheckIcon />}
+                      onClick={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)}
+                    >
+                      Close Job
+                    </DropdownItem>
+                  
+                  <DropdownItem
+                    key="edit"
+                    description="Edit the job details"
+                    startContent={<EditIcon />}
+
+                  >
+                    Edit
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection>
+                  <DropdownItem
+                    key="delete"
+                    description="Delete this job permanently"
+                    color="danger"
+                    startContent={<DeleteIcon />}
+                    onClick={() => handleConfirm(smell.key)}
+                  >
+                    Delete
+                  </DropdownItem>
+                </DropdownSection>
+              </DropdownMenu>
+            </Dropdown>
+
+      
           </div>
         );
 

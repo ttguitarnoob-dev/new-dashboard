@@ -1,8 +1,11 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Input, Textarea, CheckboxGroup, Checkbox } from "@nextui-org/react"
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Input, Textarea, CheckboxGroup, Checkbox, Listbox, ListboxItem, CircularProgress } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { jobsColumns } from "../../../utils/tableData"
 import JobsTable from "../../UI Components/JobsTable"
+import { ArrowIcon } from "../../UI Components/SVG Icons/ArrowIcon"
+import { PhoneIcon } from "../../UI Components/SVG Icons/PhoneIcon"
+import { MailIcon } from "../../UI Components/SVG Icons/MailIcon"
 
 export default function CustomerDetails() {
     const { id } = useParams()
@@ -139,8 +142,8 @@ export default function CustomerDetails() {
     if (!customer) {
         return (
             <>
-                <section>
-                    <h1>Loading data...{id}</h1>
+                <section className="center-omg mt-20">
+                    <CircularProgress color="secondary" label="Loading Customer Data..." />
                 </section>
             </>
         )
@@ -150,17 +153,24 @@ export default function CustomerDetails() {
 
         <>
             <section>
-                <Button onClick={() => handleClick('/tombstone/customers')}>Back To All Customers</Button>
-                <div className="customer-info">
-                    <h1>{customer.name}</h1>
-                    <a href={`tel:${customer.phone}`}><p>{customer.phone}</p></a>
-                    <a href={`mailto:${customer.email}`}><p>{customer.email}</p></a>
-                </div>
+                <Button className="ml-5" isIconOnly startContent={<ArrowIcon />} onClick={() => handleClick('/tombstone/customers')}></Button>
+                <section className="center-omg">
+                    <div className="customer-info">
+                        <h1 className="text-5xl mb-5">{customer.name}</h1>
+                        <Listbox>
+                            <ListboxItem startContent={<PhoneIcon />} href={`tel:${customer.phone}`}>
+                                {customer.phone}
+                            </ListboxItem>
+                            <ListboxItem startContent={<MailIcon />} href={`mailto:${customer.email}`}>
+                                {customer.email}
+                            </ListboxItem>
+                        </Listbox>
+                        <p>{customer.customerNotes}</p>
+                    </div>
+                </section>
                 <hr></hr>
-                <div className="text-section">
-                    <p>{customer.customerNotes}</p>
-                </div>
-                <section className="text-4xl mt-10 mb-4">
+
+                <section className="text-4xl ml-4 mt-10 mb-4">
                     <h2>Jobs</h2>
                 </section>
                 <JobsTable columns={jobsColumns} rows={jobs} customerID={id} customerData={customer} />

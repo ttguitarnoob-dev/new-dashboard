@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button, CircularProgress } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { customersColumns } from "../../../utils/tableData";
@@ -31,9 +31,10 @@ export default function Customers() {
     //Loading message
     if (!customers) {
         return (
-            <section>
-                <h1>Loading items</h1>
+            <section className="center-omg mt-20">
+                <CircularProgress color="secondary" label="Loading Customer Data..." />
             </section>
+            
         )
     }
 

@@ -67,6 +67,13 @@
   background-color: rgb(97, 57, 97);
   padding: 2rem;
   border-radius: 20px;
-  max-width: fit-content;
+  width: 98vw;
   margin: 1rem;
+}
+
+.center-omg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
