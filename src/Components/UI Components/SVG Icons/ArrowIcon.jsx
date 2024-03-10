@@ -25,7 +25,7 @@ export const ArrowIcon = ({
         strokeMiterlimit={10}
         strokeWidth={1.5}
       >
-        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
     </svg>
   );

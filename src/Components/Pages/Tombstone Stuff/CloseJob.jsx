@@ -131,9 +131,9 @@ export default function CloseJob({ customerData, jobIndex }) {
     return (
         <>
             <section>
-                <CheckboxGroup className="mt-5" label="Select An Action">
+                <CheckboxGroup className="mt-5" label="Select Actions">
                     {!hasInvoice && <Checkbox value={'invoice'} onChange={() => checkTheChecks(0)}>Generate Invoice</Checkbox>}
-                    {hasInvoice && <a style={{ textDecoration: 'underline' }} href={`https://majesticmonuments.org/invoices/${customerData.jobs[jobIndex].invoiceID}`} target="_blank">Link to Invoice</a>}
+                    {hasInvoice && <a style={{ textDecoration: 'underline' }} href={`https://majesticmonuments.org/invoices/${customerData.jobs[jobIndex].invoiceID}`} target="_blank">View Invoice</a>}
                     <Checkbox value={'email'} onChange={() => checkTheChecks(1)}>Send Invoice Email</Checkbox>
                     <Checkbox value={'paid'} onChange={() => checkTheChecks(2)}>Update Paid</Checkbox>
                 </CheckboxGroup>

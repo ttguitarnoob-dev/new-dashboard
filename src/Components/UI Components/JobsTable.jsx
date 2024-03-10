@@ -6,6 +6,7 @@ import CloseJob from "../Pages/Tombstone Stuff/CloseJob";
 import { EditIcon } from "./SVG Icons/EditIcon";
 import { DeleteIcon } from "./SVG Icons/DeleteIcon";
 import { CheckIcon } from "./SVG Icons/CheckIcon";
+import EditJob from "../Pages/Tombstone Stuff/EditJob";
 
 
 
@@ -112,21 +113,21 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Actions Dropsdown">
                 <DropdownSection title="Actions" showDivider>
-                  
-                    <DropdownItem
-                      key="close"
-                      description="Options for finishing the job"
-                      startContent={<CheckIcon />}
-                      onClick={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)}
-                    >
-                      Close Job
-                    </DropdownItem>
-                  
+
+                  <DropdownItem
+                    key="close"
+                    description="Options for finishing the job"
+                    startContent={<CheckIcon />}
+                    onClick={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)}
+                  >
+                    Close Job
+                  </DropdownItem>
+
                   <DropdownItem
                     key="edit"
                     description="Edit the job details"
                     startContent={<EditIcon />}
-
+                    onClick={() => openModal(<EditJob jobDetails={smell} id={customerID} />)}
                   >
                     Edit
                   </DropdownItem>
@@ -145,7 +146,17 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
               </DropdownMenu>
             </Dropdown>
 
-      
+            {/* <Popover variant="dark" placement="top">
+              <PopoverTrigger>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2">
+                  <Button size="sm" color="secondary" onPress={() => openModal(<CloseJob customerData={customerData} jobIndex={smell.key} />)} className="mr-2">Close Job</Button>
+                  <Button size="sm" className="mr-2">Edit Details</Button>
+                  <Button size="sm" color="danger" onPress={() => handleConfirm(smell.key)}>Delete Job</Button>
+                </div>
+              </PopoverContent>
+            </Popover> */}
           </div>
         );
 
