@@ -83,7 +83,7 @@ export default function CloseJob({ customerData, jobIndex }) {
                     "Content-type": "application/json"
                 }
             }
-            console.log('sending put request to ', customerURL)
+
             const putRequest = await fetch(customerURL, updateOptions)
             const putData = await putRequest.json()
             window.location.reload()
@@ -94,11 +94,7 @@ export default function CloseJob({ customerData, jobIndex }) {
             console.log('ya you really went too far this time', err)
         }
 
-        // try {
-
-        // } catch(err) {
-        //     console.log('second try errr', err)
-        // }
+        
     }
 
     //Send Email, linked to isChecked[1]

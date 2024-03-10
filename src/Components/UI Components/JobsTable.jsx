@@ -148,7 +148,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
             )}
           </TableBody>
         </Table>
-        <Modal placement="top" variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <Modal placement="center" variant="dark" backdrop="blur" isOpen={isOpen} onClose={onClose}>
           <ModalContent>
             {(onClose) => (
               <>
