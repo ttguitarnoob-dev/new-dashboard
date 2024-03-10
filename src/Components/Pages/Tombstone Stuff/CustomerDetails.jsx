@@ -165,7 +165,7 @@ export default function CustomerDetails() {
                 </section>
                 <JobsTable columns={jobsColumns} rows={jobs} customerID={id} customerData={customer} />
                 <Button className="m-4" onClick={addJob}>Add Job</Button>
-                <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+                <Modal scrollBehavior="inside" backdrop="blur" isOpen={isOpen} onClose={onClose}>
                     <ModalContent>
                         {(onClose) => (
                             <>
