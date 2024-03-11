@@ -67,6 +67,15 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
     onOpen()
   }
 
+  function checkPaid(item) {
+    console.log('itemmm', item.paid)
+    if (item.paid) {
+      return "Paid"
+    } else {
+      return "Not Paid"
+    }
+  }
+
   // Modal Component
   // function EditJobsModal({ clickedItem }) {
   //   console.log('job', rows[clickedItem])
@@ -91,6 +100,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
           <div>
             {/* <a href={`/tombstone/customers/${smell._id}`}><p>{cellValue}</p></a> */}
             <p>{cellValue}</p>
+            <p>{checkPaid(smell)}</p>
           </div>
         );
       case "date":

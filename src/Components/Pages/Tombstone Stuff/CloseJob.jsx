@@ -12,6 +12,7 @@ import { useState } from "react"
 import { customersColumns } from "../../../utils/tableData"
 
 export default function CloseJob({ customerData, jobIndex }) {
+    console.log('allcustomerdata', customerData)
 
     let isChecked = [false, false, false]
     let hasInvoice = checkForInvoice()
@@ -35,9 +36,7 @@ export default function CloseJob({ customerData, jobIndex }) {
 
     //Determine if job already has invoice
     function checkForInvoice() {
-        console.log('customerdata from invoicchecker', customerData.jobs[jobIndex])
         const invoice = customerData.jobs[jobIndex].invoiceID
-        console.log('hasinvoice', invoice)
         if (invoice === null) {
             return false
         } else {
@@ -104,7 +103,27 @@ export default function CloseJob({ customerData, jobIndex }) {
 
     //Update paid, linked to isChecked[2]
     async function updatePaid() {
-        console.log('updating paid')
+        const URL = `http://localhost:8000/customers/update-paid/${customerData._id}`
+        console.log('sending to', URL)
+        console.log('updating paid', customerData)
+        const paidData = {customerID: customerData._id, jobIndex: jobIndex}
+        const options = {
+            method: "PUT",
+            body: JSON.stringify(paidData),
+            mode: "cors",
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+
+        try {
+            const response = await fetch(URL, options)
+            const updatedCustomer = await response.json()
+            window.location.reload()
+            return updatedCustomer
+        } catch(err) {
+            console.log('errrorrr', err)
+        }
     }
 
     //Chose which functions to run when submit button is clicked, based on which checks were checkededed
