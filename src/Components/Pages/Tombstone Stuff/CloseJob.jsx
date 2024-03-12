@@ -54,7 +54,7 @@ export default function CloseJob({ customerData, jobIndex }) {
     }
 
     //Generate invoice, linked to isChecked[0]
-    async function generateInvoice() {
+    async function generateInvoice(runPaid, email) {
         
         console.log('yo im generating an invoice now', customerData._id, jobIndex)
         const newInvoiceOptions = {
@@ -85,6 +85,15 @@ export default function CloseJob({ customerData, jobIndex }) {
 
             const putRequest = await fetch(customerURL, updateOptions)
             const putData = await putRequest.json()
+
+            if (email) {
+                await sendEmail()
+            }
+
+            if (runPaid) {
+                await updatePaid()
+            }
+
             window.location.reload()
             return putData
 
@@ -130,10 +139,26 @@ export default function CloseJob({ customerData, jobIndex }) {
     async function handleSubmit() {
 
         //Putting paid first so that all the others can have the correct paid status
+        if (isChecked[0] && isChecked[1] && isChecked[2]) {
+            console.log('allchecked')
+            await generateInvoice(true, true)
+            return
+        }
+
+        if (isChecked[0] && isChecked[2]) {
+            console.log('only doing this one')
+            generateInvoice(true)
+            return
+        }
+
+        if (isChecked[1]) {
+            sendEmail()
+        }
+
         if (isChecked[2]) {
             if (customerData.jobs[jobIndex].invoiceID === null){
-                await generateInvoice()
-                await updatePaid()
+                generateInvoice(true)
+                
                 console.log('supposedly updated paid and made an invoice')
             } else {
                 updatePaid()
@@ -147,9 +172,6 @@ export default function CloseJob({ customerData, jobIndex }) {
             }
         }
 
-        if (isChecked[1]) {
-            sendEmail()
-        }
 
 
         console.log('function done')
