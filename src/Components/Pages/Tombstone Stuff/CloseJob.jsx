@@ -127,15 +127,24 @@ export default function CloseJob({ customerData, jobIndex }) {
     }
 
     //Chose which functions to run when submit button is clicked, based on which checks were checkededed
-    function handleSubmit() {
+    async function handleSubmit() {
 
         //Putting paid first so that all the others can have the correct paid status
         if (isChecked[2]) {
-            updatePaid()
+            if (customerData.jobs[jobIndex].invoiceID === null){
+                await generateInvoice()
+                await updatePaid()
+                console.log('supposedly updated paid and made an invoice')
+            } else {
+                updatePaid()
+            }
         }
 
         if (isChecked[0]) {
-            generateInvoice()
+            console.log('generate invoice route', customerData.jobs[jobIndex].invoiceID)
+            if (customerData.jobs[jobIndex].invoiceID === null){
+                generateInvoice()
+            }
         }
 
         if (isChecked[1]) {
