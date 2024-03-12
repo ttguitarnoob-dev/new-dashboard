@@ -15,7 +15,6 @@ import EditJob from "../Pages/Tombstone Stuff/EditJob";
 export default function JobsTable({ columns, rows, customerID, customerData }) {
   //Modal Things
   const [modal, setModal] = useState()
-  const [popoverOpen, setPopoverOpen] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const updateURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
   let data = customerData
@@ -67,9 +66,16 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
     onOpen()
   }
 
+  function paidColor(item) {
+    if (item){
+      return "green"
+    } else {
+      return "red"
+    }
+  }
+
   function checkPaid(item) {
-    console.log('itemmm', item.paid)
-    if (item.paid) {
+    if (item) {
       return "Paid"
     } else {
       return "Not Paid"
@@ -100,7 +106,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
           <div>
             {/* <a href={`/tombstone/customers/${smell._id}`}><p>{cellValue}</p></a> */}
             <p>{cellValue}</p>
-            <p>{checkPaid(smell)}</p>
+            <p style={{color: paidColor(smell.paid)}}>{checkPaid(smell.paid)}</p>
           </div>
         );
       case "date":
