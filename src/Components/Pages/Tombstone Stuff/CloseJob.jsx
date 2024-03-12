@@ -103,7 +103,7 @@ export default function CloseJob({ customerData, jobIndex }) {
 
     //Update paid, linked to isChecked[2]
     async function updatePaid() {
-        const URL = `http://localhost:8000/customers/update-paid/${customerData._id}`
+        const URL = `https://api.ttguitarnoob.cloud/customers/update-paid/${customerData._id}`
         console.log('sending to', URL)
         console.log('updating paid', customerData)
         const paidData = {customerID: customerData._id, jobIndex: jobIndex}
