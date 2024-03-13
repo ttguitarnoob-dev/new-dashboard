@@ -8,8 +8,6 @@
 //submit button will trigger its own function that has if generate = true, then run its function, etc
 
 import { Button, Checkbox, CheckboxGroup } from "@nextui-org/react"
-import { useState } from "react"
-import { customersColumns } from "../../../utils/tableData"
 
 export default function CloseJob({ customerData, jobIndex }) {
     console.log('allcustomerdata', customerData)
@@ -87,7 +85,7 @@ export default function CloseJob({ customerData, jobIndex }) {
             const putData = await putRequest.json()
 
             if (email) {
-                await sendEmail()
+                await sendEmail(true)
             }
 
             if (runPaid) {
@@ -95,6 +93,7 @@ export default function CloseJob({ customerData, jobIndex }) {
             }
 
             window.location.reload()
+            console.log("generate function done")
             return putData
 
 
@@ -106,8 +105,27 @@ export default function CloseJob({ customerData, jobIndex }) {
     }
 
     //Send Email, linked to isChecked[1]
-    async function sendEmail() {
-        console.log('sending email now', customerData.email)
+    async function sendEmail(alreadyChosen) {
+        if (alreadyChosen) {
+            console.log('ok the invoice got generated, go ahead and sendddd')
+            return
+        } else {
+
+            if (checkForInvoice()){
+                console.log('there is an invoice')
+                console.log('sending email now', customerData.email)
+            } else {
+                console.log("BRO thers no invoice you cant send one if theres no invoice")
+                const createInvoice = window.confirm("There is no invoice for this job.  Would you like to generate one?")
+                if (createInvoice){
+                    console.log("ok it's done bro")
+                    await generateInvoice(false, true)
+                } else {
+                    console.log('clicked noooo')
+                    
+                }
+            }
+        }
     }
 
     //Update paid, linked to isChecked[2]

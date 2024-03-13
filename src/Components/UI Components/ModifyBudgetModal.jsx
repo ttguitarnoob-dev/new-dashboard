@@ -45,7 +45,6 @@ export default function ModifyBudgetModal({ id, data }) {
 
     //Edit the expense details
     function handleEdit() {
-        const theBill = allData.allData.bills[id]
         allData.allData.bills[id] = editChanges
         handlePut(putURL)
 
@@ -84,6 +83,7 @@ export default function ModifyBudgetModal({ id, data }) {
             console.log('url', thisUrl)
             console.log('data', allData.allData)
             window.location.reload()
+            return updatedItem
         } catch (err) {
             console.log("you broke the put method bro from updating a budget item", err)
         }

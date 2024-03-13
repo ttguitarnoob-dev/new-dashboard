@@ -1,5 +1,5 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Popover, PopoverTrigger, PopoverContent, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, DropdownSection } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, useDisclosure, Modal, ModalContent, ModalBody, ModalFooter, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, DropdownSection } from "@nextui-org/react";
 import { useCallback, useState } from "react";
 import { VerticalDotsIcon } from "./SVG Icons/VerticalDotsIcon";
 import CloseJob from "../Pages/Tombstone Stuff/CloseJob";

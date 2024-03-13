@@ -1,6 +1,5 @@
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, ModalContent, Modal, ModalBody, ModalFooter, button, Button } from "@nextui-org/react";
-import { click } from "@testing-library/user-event/dist/click";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, useDisclosure, ModalContent, Modal, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import { useCallback, useState } from "react";
 import ModifyBudgetModal from "./ModifyBudgetModal";
 // import { oneBudgetColumns } from "../../utils/tableData";
