@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { customersColumns } from "../../../utils/tableData";
 import CustomerListTable from "../../UI Components/CustomerListTable";
+import { ArrowIcon } from "../../UI Components/SVG Icons/ArrowIcon";
 
 export default function Customers() {
     const navigate = useNavigate()
@@ -41,14 +42,14 @@ export default function Customers() {
     return (
         <>
             <section>
+
                 <div className="p-2">
+                <Button isIconOnly startContent={<ArrowIcon />} onClick={() => navigate('/tombstone')} className="ml-2 mb-10"> </Button> 
                     <h1 className="page-title">Tombstone Customers</h1>
                     <Button className="mb-10" onClick={() => navigate("/tombstone/customers/new")} >
                         New Customer
                     </Button>
-                    <Button onClick={() => navigate('/tombstone')} className="ml-2 mb-10">
-                        Back To Tombstone Stuff
-                    </Button>
+                    
                 </div>
                 <CustomerListTable columns={customersColumns} rows={customers} />
 

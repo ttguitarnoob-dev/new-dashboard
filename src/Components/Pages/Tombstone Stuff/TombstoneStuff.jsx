@@ -4,7 +4,7 @@ export default function TombstoneStuff(){
 
     const itemList = [
         { text: "Inquiries", link: "/tombstone/inquiries", tab: false },
-        { text: "Your Site", link: "https://majestic-monuments.ttguitarnoob.cloud", tab: true },
+        { text: "Your Site", link: "https://majesticmonuments.org", tab: true },
         { text: "Customer Database", link: "/tombstone/customers", tab: false },
 
     ]
