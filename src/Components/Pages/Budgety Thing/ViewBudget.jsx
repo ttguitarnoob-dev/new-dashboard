@@ -29,7 +29,7 @@ export default function ViewBudget() {
     }
 
     async function handleFetch() {
-        const URL = `https://api.ttguitarnoob.cloud/budgets/${id.id}`
+        const URL = `https://api.travisty-creations.com/budgets/${id.id}`
         // const URL = `http://localhost:8000/budgets/${id.id}`
         const options = {
             method: "GET"

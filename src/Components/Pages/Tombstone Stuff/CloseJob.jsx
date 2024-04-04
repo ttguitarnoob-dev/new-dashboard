@@ -15,8 +15,8 @@ export default function CloseJob({ customerData, jobIndex }) {
     let isChecked = [false, false, false]
     let hasInvoice = checkForInvoice()
     const customerID = customerData._id
-    const invoiceURL = `https://api.ttguitarnoob.cloud/invoices`
-    const customerURL = `https://api.ttguitarnoob.cloud/customers/invoice-id/${customerID}`
+    const invoiceURL = `https://api.travisty-creations.com/invoices`
+    const customerURL = `https://api.travisty-creations.com/customers/invoice-id/${customerID}`
     const invoiceData = {
         client: customerData.name,
         phone: customerData.phone,

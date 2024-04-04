@@ -12,7 +12,7 @@ export default function NewBudget() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const url = "https://api.ttguitarnoob.cloud/budgets"
+        const url = "https://api.travisty-creations.com/budgets"
         //const url = "http://localhost:8000/budgets"
         const options = {
             method: "POST",

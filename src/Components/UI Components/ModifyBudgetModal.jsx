@@ -6,9 +6,9 @@ import { DollarIcon } from "./SVG Icons/DollarIcon"
 export default function ModifyBudgetModal({ id, data }) {
     const pageID = useParams()
     const [allData, setAllData] = useState()
-    const URL = `https://api.ttguitarnoob.cloud/budgets/${pageID.id}`
-    const unpaidURL = `https://api.ttguitarnoob.cloud/budgets/update-unpaid/${pageID.id}`
-    const putURL = `https://api.ttguitarnoob.cloud/budgets/edit-expense/${pageID.id}`
+    const URL = `https://api.travisty-creations.com/budgets/${pageID.id}`
+    const unpaidURL = `https://api.travisty-creations.com/budgets/update-unpaid/${pageID.id}`
+    const putURL = `https://api.travisty-creations.com/budgets/edit-expense/${pageID.id}`
     // const putURL = `http://localhost:8000/budgets/edit-expense/${pageID.id}`
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [editChanges, setEditChanges] = useState({})

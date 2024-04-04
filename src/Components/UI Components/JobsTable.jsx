@@ -16,7 +16,7 @@ export default function JobsTable({ columns, rows, customerID, customerData }) {
   //Modal Things
   const [modal, setModal] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const updateURL = `https://api.ttguitarnoob.cloud/customers/${customerID}`
+  const updateURL = `https://api.travisty-creations.com/customers/${customerID}`
   let data = customerData
 
   //Fetch Customer Data

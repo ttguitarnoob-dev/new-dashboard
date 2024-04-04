@@ -5,7 +5,7 @@ import { useNavigate } from "react-router"
 
 export default function TombstoneInquiries() {
 
-    const URL = "https://api.ttguitarnoob.cloud/majestics"
+    const URL = "https://api.travisty-creations.com/majestics"
     const [items, setItems] = useState()
     const navigate = useNavigate()
 

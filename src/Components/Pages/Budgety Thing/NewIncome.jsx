@@ -14,7 +14,7 @@ export default function NewIncome({ id }) {
         e.preventDefault()
 
         initialInput.amount = parseFloat(initialInput.amount)
-        const URL = `https://api.ttguitarnoob.cloud/budgets/new-income/${id.id}`
+        const URL = `https://api.travisty-creations.com/budgets/new-income/${id.id}`
         const options = {
             method: "PUT",
             body: JSON.stringify(initialInput),

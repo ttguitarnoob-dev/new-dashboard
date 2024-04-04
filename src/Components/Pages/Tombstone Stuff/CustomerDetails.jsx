@@ -22,7 +22,7 @@ export default function CustomerDetails() {
     //Initial Customer Data Fetch
     async function handleFetch() {
         // const getURL = `http://localhost:8000/customers/${id}`
-        const getURL = `https://api.ttguitarnoob.cloud/customers/${id}`
+        const getURL = `https://api.travisty-creations.com/customers/${id}`
         const getOptions = {
             method: "GET"
         }
@@ -37,7 +37,7 @@ export default function CustomerDetails() {
     //Put fetch
     async function updateCustomerData() {
         // const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
-        const URL = `https://api.ttguitarnoob.cloud/customers/${id}`
+        const URL = `https://api.travisty-creations.com/customers/${id}`
         const options = {
             method: "PUT",
             body: JSON.stringify(customer),
@@ -60,7 +60,7 @@ export default function CustomerDetails() {
 
     //Get Services Data
     async function fetchServices() {
-        const URL = "https://api.ttguitarnoob.cloud/prices"
+        const URL = "https://api.travisty-creations.com/prices"
         const options = {
             method: "GET"
         }

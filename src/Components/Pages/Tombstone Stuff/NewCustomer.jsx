@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 export default function NewCustomer() {
     const navigate = useNavigate()
     const initialInput = {}
-    const postURL = "https://api.ttguitarnoob.cloud/customers"
+    const postURL = "https://api.travisty-creations.com/customers"
     // const postURL = "https://api.ttguitarnoob.cloud/customers"
 
     async function handleSubmit(e) {
