@@ -22,6 +22,7 @@ import NewBudget from './Components/Pages/Budgety Thing/NewBudget';
 import CustomerDetails from './Components/Pages/Tombstone Stuff/CustomerDetails';
 import CloseJob from './Components/Pages/Tombstone Stuff/CloseJob';
 import ImageUpload from './Components/UI Components/ImageUpload';
+import KiaraBday from './Components/Pages/KiaraBday';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/Kiara' element={<Kiara />} />
+          <Route path='/Kiara' element={<KiaraBday />} />
           <Route path='/Travis' element={<Travis />} />
           <Route path='/budget' element={<Budget />} />
           <Route path='/budget/:id' element={<ViewBudget />} />
