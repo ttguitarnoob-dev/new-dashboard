@@ -32,6 +32,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/Kiara' element={<KiaraBday />} />
+          <Route path='/normalkiara' element={<Kiara />} />
           <Route path='/Travis' element={<Travis />} />
           <Route path='/budget' element={<Budget />} />
           <Route path='/budget/:id' element={<ViewBudget />} />
