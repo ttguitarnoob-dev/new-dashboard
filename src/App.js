@@ -23,6 +23,7 @@ import CustomerDetails from './Components/Pages/Tombstone Stuff/CustomerDetails'
 import CloseJob from './Components/Pages/Tombstone Stuff/CloseJob';
 import ImageUpload from './Components/UI Components/ImageUpload';
 import KiaraBday from './Components/Pages/KiaraBday';
+import GamePlanHome from './Components/Game Planner/GamePlanHome';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='/academy/quizzes' element={<Quizzes />} />
           <Route path='/academy/quizzer' element={<Quizzer />} />
           <Route path='/pooo' element={<ImageUpload />} />
+          <Route path='/game-planner' element={<GamePlanHome />} />
         </Routes>
       </NextUIProvider>
     </div>
