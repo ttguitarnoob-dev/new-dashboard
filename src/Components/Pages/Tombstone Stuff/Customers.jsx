@@ -10,7 +10,7 @@ export default function Customers() {
     const [customers, setCustomers] = useState()
 
     async function handleFetch() {
-        const URL = `https://api.ttguitarnoob.cloud/customers`
+        const URL = `https://api.travisty-creations.com/customers`
         const options = {
             method: "GET"
         }
