@@ -5,7 +5,7 @@ export default function SiteUpdater() {
 
     // fetch route that scans each folder in the site directory and displays an update button for each one
 
-    // fetch route that updates the folder based on the button selected
+    // fetch route that runs the update script based on the button selected
     
 
     return(
