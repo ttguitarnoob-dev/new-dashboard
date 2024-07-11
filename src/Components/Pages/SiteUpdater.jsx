@@ -12,9 +12,7 @@ export default function SiteUpdater() {
         <>
         <section>
             <h1 className="page">Site Updater!</h1>
-            <div className="page mt-10">
-                {words[numero]}
-            </div>
+            
             <div className="page mt-10">
                 <Button onClick={() => setNumero(numero + 1)}>Next</Button>
             </div>
