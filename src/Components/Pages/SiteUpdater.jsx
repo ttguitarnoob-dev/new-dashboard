@@ -4,16 +4,16 @@ import { useEffect, useState } from "react"
 export default function SiteUpdater() {
 
     // fetch route that scans each folder in the site directory and displays an update button for each one
-    const URL = 'http://127.0.0.1:5000/scan-folders'
+    const URL = 'http://127.0.0.1:5000'
     const [items, setItems] = useState()
 
-    async function handleFetch() {
+    async function handleFetch(endpoint) {
         try {
             const options = {
                 method: "GET"
             }
 
-            const response = await fetch(URL, options)
+            const response = await fetch(`${URL}/${endpoint}`, options)
             console.log('omg', response)
             const results = await response.json()
             console.log('resutlts', results)
@@ -29,7 +29,7 @@ export default function SiteUpdater() {
     }
 
     useEffect(() => {
-        handleFetch()
+        handleFetch('scan-folders')
     }, [])
     // fetch route that runs the update script based on the button selected
 
@@ -44,7 +44,7 @@ export default function SiteUpdater() {
                     {items && items.map((oneItem, index) => (
 
 
-                        <Button className="mr-10 mb-10">{oneItem}</Button>
+                        <Button onClick={() => handleFetch(`update-app/${oneItem}`)} className="mr-10 mb-10">{oneItem}</Button>
 
                     ))}
                 </div>
