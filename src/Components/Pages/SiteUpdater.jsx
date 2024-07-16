@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 export default function SiteUpdater() {
 
     // fetch route that scans each folder in the site directory and displays an update button for each one
-    const URL = 'http://127.0.0.1:5000'
+    const URL = 'https://site-updater.travisty-creations.com'
     const [items, setItems] = useState()
 
     async function handleFetch(endpoint) {
