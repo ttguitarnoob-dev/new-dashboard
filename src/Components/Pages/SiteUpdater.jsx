@@ -44,7 +44,7 @@ export default function SiteUpdater() {
                     {items && items.map((oneItem, index) => (
 
 
-                        <Button>{oneItem}</Button>
+                        <Button className="mr-10 mb-10">{oneItem}</Button>
 
                     ))}
                 </div>
