@@ -24,6 +24,7 @@ import CloseJob from './Components/Pages/Tombstone Stuff/CloseJob';
 import ImageUpload from './Components/UI Components/ImageUpload';
 import KiaraBday from './Components/Pages/KiaraBday';
 import GamePlanHome from './Components/Game Planner/GamePlanHome';
+import SiteUpdater from './Components/Pages/SiteUpdater';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/Kiara' element={<Kiara />} />
           <Route path='/normalkiara' element={<Kiara />} />
           <Route path='/Travis' element={<Travis />} />
+          <Route path='/site-updater' element={<SiteUpdater />} />
           <Route path='/budget' element={<Budget />} />
           <Route path='/budget/:id' element={<ViewBudget />} />
           <Route path='/budget/new' element={<NewBudget />} />
