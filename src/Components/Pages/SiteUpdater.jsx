@@ -55,7 +55,10 @@ export default function SiteUpdater() {
         return(
             <>
             <section className="center-omg">
-                <Progress color="success" isIndeterminate label="Updating the site, please wait..." value={55}  className="max-w-md" />
+                <Progress color="success" isIndeterminate label="Updating the site, please wait..." value={55}  classNames={{
+                    base: "max-w-lg",
+                    indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
+                }} />
             </section>
             </>
         )
