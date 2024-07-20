@@ -1,13 +1,31 @@
 import { Button, Image, Link, Progress } from "@nextui-org/react"
 import { useEffect, useState } from "react"
+import { io } from "socket.io-client"
 
 export default function SiteUpdater() {
 
-    // fetch route that scans each folder in the site directory and displays an update button for each one
+    const socket = io('http://localhost:5000')
+
     const URL = 'https://site-updater.travisty-creations.com'
     const [items, setItems] = useState()
     const [selectedApp, setSelectedApp] = useState()
     const [updating, setUpdating] = useState(false)
+    const [updateStatus, setUpdateStatus] = useState([])
+
+    useEffect(() => {
+        // Listen for 'update' events from the server
+        socket.on('update', (message) => {
+          // Update state with new message data
+          console.log("message", message)
+        //   setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
+          console.log('updatedd', updateStatus)
+        });
+    
+        // Cleanup function to remove event listener on unmount
+        return () => {
+          socket.off('update');
+        };
+      }, []);
 
     async function handleFetch(endpoint) {
         try {
@@ -33,16 +51,28 @@ export default function SiteUpdater() {
 
     async function updateApp(endpoint) {
         console.log('updated the app', endpoint)
-        setUpdating(true)
-        try {
-            const response = await fetch(`${URL}/${endpoint}`)
-            // const result = await response.json()
-            // console.log(result)
-            setUpdating(false)
-            return 200
-        } catch (err) {
-            console.log('Tragedy occurred when trying to update the app', err)
+        const options = {
+            method: "POST",
+            body: JSON.stringify({smell: endpoint})
         }
+        // setUpdating(true)
+        try {
+            // Send endpoint as the POST body
+            fetch('http://localhost:5000/assupdate', options)
+            setUpdateStatus(false)
+        } catch (err) {
+            console.log("tried updating the app and you suck at programming", err)
+        }
+        
+        // try {
+        //     const response = await fetch(`${URL}/${endpoint}`)
+        //     // const result = await response.json()
+        //     // console.log(result)
+        //     setUpdating(false)
+        //     return 200
+        // } catch (err) {
+        //     console.log('Tragedy occurred when trying to update the app', err)
+        // }
     }
 
     useEffect(() => {
@@ -74,7 +104,7 @@ export default function SiteUpdater() {
                     {items && items.map((oneItem, index) => (
 
 
-                        <Button onClick={() => updateApp(`update-app/${oneItem}`)} className="item-button mr-10 mb-10" style={{background: "linear-gradient(113deg, rgba(174,151,255,1) 0%, rgba(172,255,230,1", color: "black", maxWidth: "350px", padding: "2rem", border: "1px solid white", borderRadius: "20px", fontSize: "2rem"}}>{oneItem}</Button>
+                        <Button key={index} onClick={() => updateApp(oneItem)} className="item-button mr-10 mb-10" style={{background: "linear-gradient(113deg, rgba(174,151,255,1) 0%, rgba(172,255,230,1", color: "black", maxWidth: "350px", padding: "2rem", border: "1px solid white", borderRadius: "20px", fontSize: "2rem"}}>{oneItem}</Button>
 
                     ))}
                 </div>
