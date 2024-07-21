@@ -53,7 +53,10 @@ export default function SiteUpdater() {
         console.log('updated the app', endpoint)
         const options = {
             method: "POST",
-            body: JSON.stringify({smell: endpoint})
+            body: JSON.stringify({smell: endpoint}),
+            headers: {
+                "Content-type": "application/json"
+            }
         }
         // setUpdating(true)
         try {
