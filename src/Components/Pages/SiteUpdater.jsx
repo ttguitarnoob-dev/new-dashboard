@@ -109,7 +109,7 @@ export default function SiteUpdater() {
         return (
             <>
                 <section className="center-omg">
-                    <Progress label="Updating the site, please wait..." value={progress} classNames={{
+                    <Progress isIndeterminate label="Updating the site, please wait..." value={progress} classNames={{
                         base: "max-w-lg",
                         indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
                     }} />
