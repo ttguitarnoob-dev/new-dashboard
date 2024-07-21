@@ -4,13 +4,13 @@ import { io } from "socket.io-client"
 
 export default function SiteUpdater() {
 
-    const socket = io('http://localhost:5000')
+    const socket = io('https://site-updater.travisty-creations.com')
 
     const URL = 'https://site-updater.travisty-creations.com'
     const [items, setItems] = useState()
-    const [selectedApp, setSelectedApp] = useState()
+    const [progress, setProgress] = useState(1)
     const [updating, setUpdating] = useState(false)
-    const [updateStatus, setUpdateStatus] = useState([])
+    const [updateStatus, setUpdateStatus] = useState(["Starting the update"])
 
     useEffect(() => {
         // Listen for 'update' events from the server
@@ -18,8 +18,15 @@ export default function SiteUpdater() {
             if (message.data == 'Script finished pooass') {
                 console.log("LASST ONE OMG")
                 setUpdating(false)
-                setUpdateStatus("Script Started")
+                setUpdateStatus(["Starting the update"])
             } else {
+                switch (message) {
+                    case "did it worked":
+                        setProgress(10)
+                        break;
+                    case "just woke up bro":
+                        setProgress(50)
+                }
                 // Update state with new message data
                 console.log("message", message)
                 setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
@@ -70,7 +77,7 @@ export default function SiteUpdater() {
         try {
             // Send endpoint as the POST body
             console.log("BEFORE WAIT")
-            const response = await fetch('http://localhost:5000/assupdate', options)
+            const response = await fetch(`${URL}/assupdate`, options)
             console.log('repsonese', response)
             const result = await response.json()
             // console.log('result', result)
@@ -102,7 +109,7 @@ export default function SiteUpdater() {
         return (
             <>
                 <section className="center-omg">
-                    <Progress label="Updating the site, please wait..." value={55} classNames={{
+                    <Progress label="Updating the site, please wait..." value={progress} classNames={{
                         base: "max-w-lg",
                         indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
                     }} />
