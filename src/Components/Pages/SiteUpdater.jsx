@@ -15,17 +15,25 @@ export default function SiteUpdater() {
     useEffect(() => {
         // Listen for 'update' events from the server
         socket.on('update', (message) => {
-          // Update state with new message data
-          console.log("message", message)
-        //   setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
-          console.log('updatedd', updateStatus)
+            if (message.data == 'Script finished pooass') {
+                console.log("LASST ONE OMG")
+                setUpdating(false)
+                setUpdateStatus("Script Started")
+            } else {
+                // Update state with new message data
+                console.log("message", message)
+                setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
+                console.log("allmessages", updateStatus)
+            }
+
+
         });
-    
+
         // Cleanup function to remove event listener on unmount
         return () => {
-          socket.off('update');
+            socket.off('update');
         };
-      }, []);
+    }, []);
 
     async function handleFetch(endpoint) {
         try {
@@ -44,7 +52,7 @@ export default function SiteUpdater() {
 
         } catch (err) {
             console.log('something bad happened when fetching', err)
-            
+
         }
 
     }
@@ -53,20 +61,26 @@ export default function SiteUpdater() {
         console.log('updated the app', endpoint)
         const options = {
             method: "POST",
-            body: JSON.stringify({smell: endpoint}),
+            body: JSON.stringify({ smell: endpoint }),
             headers: {
                 "Content-type": "application/json"
             }
         }
-        // setUpdating(true)
+        setUpdating(true)
         try {
             // Send endpoint as the POST body
-            fetch('http://localhost:5000/assupdate', options)
+            console.log("BEFORE WAIT")
+            const response = await fetch('http://localhost:5000/assupdate', options)
+            console.log('repsonese', response)
+            const result = await response.json()
+            // console.log('result', result)
             setUpdateStatus(false)
+            console.log("AFTER WAIT")
+            return result
         } catch (err) {
             console.log("tried updating the app and you suck at programming", err)
         }
-        
+
         // try {
         //     const response = await fetch(`${URL}/${endpoint}`)
         //     // const result = await response.json()
@@ -84,15 +98,21 @@ export default function SiteUpdater() {
     // fetch route that runs the update script based on the button selected
 
 
-    if (updating){
-        return(
+    if (updating) {
+        return (
             <>
-            <section className="center-omg">
-                <Progress color="success" isIndeterminate label="Updating the site, please wait..." value={55}  classNames={{
-                    base: "max-w-lg",
-                    indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
-                }} />
-            </section>
+                <section className="center-omg">
+                    <Progress label="Updating the site, please wait..." value={55} classNames={{
+                        base: "max-w-lg",
+                        indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
+                    }} />
+                    <div>
+                        {/* Render each message in the state */}
+                        {updateStatus.map((msg, index) => (
+                            <div key={index}>{msg}</div>
+                        ))}
+                    </div>
+                </section>
             </>
         )
     }
@@ -107,10 +127,11 @@ export default function SiteUpdater() {
                     {items && items.map((oneItem, index) => (
 
 
-                        <Button key={index} onClick={() => updateApp(oneItem)} className="item-button mr-10 mb-10" style={{background: "linear-gradient(113deg, rgba(174,151,255,1) 0%, rgba(172,255,230,1", color: "black", maxWidth: "350px", padding: "2rem", border: "1px solid white", borderRadius: "20px", fontSize: "2rem"}}>{oneItem}</Button>
+                        <Button key={index} onClick={() => updateApp(oneItem)} className="item-button mr-10 mb-10" style={{ background: "linear-gradient(113deg, rgba(174,151,255,1) 0%, rgba(172,255,230,1", color: "black", maxWidth: "350px", padding: "2rem", border: "1px solid white", borderRadius: "20px", fontSize: "2rem" }}>{oneItem}</Button>
 
                     ))}
                 </div>
+
             </section>
         </>
     )
