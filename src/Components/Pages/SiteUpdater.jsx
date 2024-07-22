@@ -16,17 +16,16 @@ export default function SiteUpdater() {
         // Listen for 'update' events from the server
         socket.on('update', (message) => {
             if (message.data == 'Script finished pooass') {
-                console.log("LASST ONE OMG")
                 setUpdating(false)
                 setUpdateStatus(["Starting the update"])
             } else {
-                switch (message) {
-                    case "did it worked":
-                        setProgress(10)
-                        break;
-                    case "just woke up bro":
-                        setProgress(50)
-                }
+                // switch (message) {
+                //     case "did it worked":
+                //         setProgress(10)
+                //         break;
+                //     case "just woke up bro":
+                //         setProgress(50)
+                // }
                 // Update state with new message data
                 console.log("message", message)
                 setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
@@ -113,12 +112,14 @@ export default function SiteUpdater() {
                         base: "max-w-lg",
                         indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
                     }} />
+                    <section className="output">
                     <div>
                         {/* Render each message in the state */}
                         {updateStatus.map((msg, index) => (
                             <div key={index}>{msg}</div>
                         ))}
                     </div>
+                    </section>
                 </section>
             </>
         )
