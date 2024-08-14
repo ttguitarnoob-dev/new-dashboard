@@ -15,21 +15,24 @@ export default function SiteUpdater() {
     useEffect(() => {
         // Listen for 'update' events from the server
         socket.on('update', (message) => {
-            if (message.data == 'Script finished pooass') {
+            if (message.data === 'Script finished pooass') {
                 setUpdating(false)
-                setUpdateStatus(["Starting the update"])
+                setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
+                // setUpdateStatus(["Starting the update"])
             } else {
+                if (message.data === "pulling repo") {
+                    console.log('IT SAYS PULLING REPO', message.data)
+                }
                 // switch (message) {
-                //     case "did it worked":
+                //     case "pulling repo":
+                //         console.log('IT SAYS PULLING REPO', message)
                 //         setProgress(10)
                 //         break;
                 //     case "just woke up bro":
                 //         setProgress(50)
                 // }
                 // Update state with new message data
-                console.log("message", message)
                 setUpdateStatus((prevMessages) => [...prevMessages, message.data]);
-                console.log("allmessages", updateStatus)
             }
 
 
@@ -39,21 +42,16 @@ export default function SiteUpdater() {
         return () => {
             socket.off('update');
         };
-    }, []);
+    }, [socket]);
 
     async function handleFetch(endpoint) {
         try {
             const options = {
                 method: "GET"
             }
-
             const response = await fetch(`${URL}/${endpoint}`, options)
-            console.log('omg', response)
             const results = await response.json()
-            console.log('resutlts', results)
             var array = results.map(item => item)
-            console.log("poohole", array)
-
             setItems(array)
 
         } catch (err) {
@@ -75,14 +73,18 @@ export default function SiteUpdater() {
         setUpdating(true)
         try {
             // Send endpoint as the POST body
-            console.log("BEFORE WAIT")
             const response = await fetch(`${URL}/assupdate`, options)
             console.log('repsonese', response)
             const result = await response.json()
             // console.log('result', result)
-            setUpdateStatus(false)
+            if (result) {
+                console.log("RESULT HAPPENED")
+                setUpdating(false)
+            } else {
+                console.log("no result but hey it got this far")
+            }
             console.log("AFTER WAIT")
-            return result
+            return
         } catch (err) {
             console.log("tried updating the app and you suck at programming", err)
         }
@@ -113,12 +115,12 @@ export default function SiteUpdater() {
                         indicator: "bg-gradient-to-r from-purple-500 to-teal-500"
                     }} />
                     <section className="output">
-                    <div>
-                        {/* Render each message in the state */}
-                        {updateStatus.map((msg, index) => (
-                            <div key={index}>{msg}</div>
-                        ))}
-                    </div>
+                        <div>
+                            {/* Render each message in the state */}
+                            {updateStatus.map((msg, index) => (
+                                <div key={index}>{msg}</div>
+                            ))}
+                        </div>
                     </section>
                 </section>
             </>
@@ -128,7 +130,7 @@ export default function SiteUpdater() {
         <>
             <section>
                 <h1 className="page">Site Updater!</h1>
-                <h2 className="page">Which site would you like to update?</h2>
+                <h2 className="page">Which site would you like to update you asshole?</h2>
 
                 <div className="button-list mt-10">
                     {/* <Button>{items[0]}</Button> */}
